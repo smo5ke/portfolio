@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معرض الإبداع الاحترافي</title>
+    <title>عبدالرحمن خطيب | مصمم تقني ومبرمج</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
         body {
@@ -13,6 +13,7 @@
             background-color: #0f172a;
             color: #f8fafc;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
         
         /* Custom Scrollbar */
@@ -47,14 +48,14 @@
         }
 
         .glass-nav {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.9);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         /* Image Overlay */
         .image-overlay {
-            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
         }
         
         .filter-btn.active {
@@ -62,24 +63,47 @@
             color: white;
             border-color: #3b82f6;
         }
+
+        /* Timeline Styles */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -9px;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #3b82f6;
+            border: 4px solid #0f172a;
+        }
+        
+        /* Print Styles */
+        @media print {
+            .no-print { display: none !important; }
+            body { background-color: white; color: black; }
+            .text-gray-400 { color: #555 !important; }
+            .text-white { color: black !important; }
+            section { page-break-inside: avoid; }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-blue-500 selection:text-white">
 
     <!-- Navigation -->
-    <nav class="glass-nav fixed w-full z-50 transition-all duration-300">
+    <nav class="glass-nav fixed w-full z-50 transition-all duration-300 no-print">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0 flex items-center gap-2">
-                    <i class="fa-solid fa-bolt text-blue-500 text-2xl"></i>
-                    <span class="font-bold text-2xl tracking-wider text-white">إبداع<span class="text-blue-500">.تك</span></span>
+                    <i class="fa-solid fa-layer-group text-blue-500 text-2xl"></i>
+                    <span class="font-bold text-xl tracking-wider text-white">عبدالرحمن<span class="text-blue-500">.خطيب</span></span>
                 </div>
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4 space-x-reverse">
+                    <div class="ml-10 flex items-baseline space-x-6 space-x-reverse">
                         <a href="#home" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">الرئيسية</a>
-                        <a href="#portfolio" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">المعرض</a>
-                        <a href="#services" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">خدماتنا</a>
-                        <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-bold transition-all shadow-lg shadow-blue-500/30">تواصل معنا</a>
+                        <a href="#about" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">عني</a>
+                        <a href="#resume" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">السيرة الذاتية</a>
+                        <a href="#portfolio" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">أعمالي</a>
+                        <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-bold transition-all shadow-lg shadow-blue-500/30">تواصل معي</a>
                     </div>
                 </div>
             </div>
@@ -88,125 +112,240 @@
 
     <!-- Hero Section -->
     <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <!-- Abstract Background Shapes -->
+        <!-- Abstract Background -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-            <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl filter animate-pulse"></div>
-            <div class="absolute bottom-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl filter"></div>
+            <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl filter animate-pulse"></div>
+            <div class="absolute bottom-1/4 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl filter"></div>
         </div>
 
         <div class="text-center max-w-4xl px-4 fade-in-up">
-            <h2 class="text-blue-400 font-bold tracking-widest text-sm uppercase mb-4">تصميم • ابتكار • مستقبل</h2>
+            <h2 class="text-blue-400 font-bold tracking-widest text-sm uppercase mb-4">مصمم تقني & مبرمج أنظمة</h2>
             <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
-                نحول الأفكار إلى <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">واقع رقمي مذهل</span>
+                أبني الأنظمة المعقدة <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-yellow-400">وأصمم المساحات الإبداعية</span>
             </h1>
             <p class="text-gray-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-                استعرضنا صورك وحولناها إلى تجربة بصرية متكاملة. سواء كان طعاماً، منتجات تجميل، أو تقنيات مالية، نحن نبرز الجمال في كل تفصيل.
+                مزيج فريد من هندسة البرمجيات (Rust, C++, Embedded) والتصميم الفني (3D Modeling, Interior Design). أحول الأكواد إلى حلول، والمخططات إلى واقع.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center no-print">
                 <a href="#portfolio" class="bg-blue-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/40 flex items-center justify-center gap-2 group">
-                    استكشف المعرض
+                    شاهد أعمالي
                     <i class="fa-solid fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
                 </a>
                 <button onclick="window.print()" class="border border-gray-600 text-gray-300 px-8 py-4 rounded-full font-bold text-lg hover:border-white hover:text-white transition-all flex items-center justify-center gap-2">
                     <i class="fa-solid fa-file-pdf"></i>
-                    حفظ كملف PDF
+                    تحميل السيرة الذاتية
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20 bg-slate-900/50">
+    <!-- About / Summary Section -->
+    <section id="about" class="py-20 bg-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in-up">
+                    <h2 class="text-3xl font-bold text-white mb-6 border-r-4 border-blue-500 pr-4">ملخص شخصي</h2>
+                    <p class="text-gray-300 leading-8 mb-6 text-lg text-justify">
+                        أنا مصمم فني ومبرمج بخلفية قوية في النمذجة ثلاثية الأبعاد، تصميم الديكور الداخلي، وتطوير الأنظمة المدمجة. لدي خبرة في تصميم الديكورات الداخلية الفاخرة، وإنشاء الرسومات الفنية، وتطوير التطبيقات المدعومة بالذكاء الاصطناعي. تشمل خبراتي برامج التصميم بمساعدة الحاسوب (CAD)، طحن لوحات الدوائر المطبوعة (CNC)، ولغات البرمجة مثل C++ و Rust. كما أنني شغوف ببناء مخصصات الذاكرة المخصصة، وتطوير مترجمات للغة البرمجة العربية "ألف 5".
+                    </p>
+                    <div class="flex gap-4">
+                        <div class="flex items-center gap-2 text-yellow-400">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>الرياض، السعودية</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-blue-400">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>abdokteb.1@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative fade-in-up delay-100">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-blue-600 to-yellow-500 rounded-lg blur-lg opacity-30"></div>
+                    <div class="relative bg-slate-900 p-8 rounded-lg border border-slate-700">
+                        <h3 class="text-xl font-bold text-white mb-4">التعليم</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-blue-400 font-bold">بكالوريوس علوم الحاسوب</h4>
+                                <p class="text-gray-400 text-sm">الجامعة العربية المفتوحة (AOU) | الرياض</p>
+                                <p class="text-gray-500 text-xs mt-1">متوقع التخرج: يوليو 2025</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-slate-700">
+                            <h3 class="text-xl font-bold text-white mb-4">اللغات</h3>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-gray-300">العربية</span>
+                                <span class="text-green-400 text-sm">اللغة الأم</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-300">الإنجليزية</span>
+                                <span class="text-yellow-400 text-sm">متقدم (B2)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume / Experience Section -->
+    <section id="resume" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-12 text-center">الخبرات المهنية</h2>
+            
+            <div class="relative border-r border-gray-700 mr-4 md:mr-0 md:ml-4 space-y-12">
+                
+                <!-- Experience 1 -->
+                <div class="timeline-item relative pr-8 fade-in-up">
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-blue-500 transition-all">
+                        <div class="flex flex-col md:flex-row justify-between mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-white">مصمم تقني</h3>
+                                <p class="text-blue-400 font-medium">AB Homes Interiors | الرياض</p>
+                            </div>
+                            <span class="text-gray-500 text-sm mt-2 md:mt-0 bg-slate-900 px-3 py-1 rounded-full h-fit border border-slate-700">مارس 2024 - مارس 2025</span>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm md:text-base">
+                            <li>تصميم وتطوير رسومات فنية مفصلة ونماذج ثلاثية الأبعاد للديكورات الداخلية الفاخرة.</li>
+                            <li>التنسيق مع المهندسين والمقاولين لضمان تنفيذ المشاريع بسلاسة.</li>
+                            <li>إنشاء تصورات ثلاثية الأبعاد واقعية وعروض تقديمية لتوصيل مفاهيم التصميم.</li>
+                            <li>اختيار المواد والتشطيبات والأثاث بما يتوافق مع تفضيلات العملاء.</li>
+                            <li>تحسين تخطيط المساحات وتصميم التخطيطات لتعزيز الوظائف والجماليات.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="timeline-item relative pr-8 fade-in-up delay-100">
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-yellow-500 transition-all">
+                        <div class="flex flex-col md:flex-row justify-between mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-white">مصمم تقني</h3>
+                                <p class="text-blue-400 font-medium">Art Deco Design | الرياض</p>
+                            </div>
+                            <span class="text-gray-500 text-sm mt-2 md:mt-0 bg-slate-900 px-3 py-1 rounded-full h-fit border border-slate-700">أبريل 2021 - مارس 2024</span>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm md:text-base">
+                            <li>تطوير رسومات فنية مفصلة ونماذج ثلاثية الأبعاد لتصاميم "آرت ديكو".</li>
+                            <li>التعاون مع المهندسين المعماريين لضمان جدوى التصميم وسلامته الهيكلية.</li>
+                            <li>إنشاء تصورات وعروض تقديمية عالية الجودة لعرض مفاهيم التصميم.</li>
+                            <li>استخدام برامج (CAD) لتحسين وحلول التصميم ودمج عناصر تاريخية في تطبيقات حديثة.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Experience 3 -->
+                <div class="timeline-item relative pr-8 fade-in-up delay-200">
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-purple-500 transition-all">
+                        <div class="flex flex-col md:flex-row justify-between mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-white">مصمم جرافيك ووسائط</h3>
+                                <p class="text-blue-400 font-medium">شركة مهام لتقنية المعلومات | الرياض</p>
+                            </div>
+                            <span class="text-gray-500 text-sm mt-2 md:mt-0 bg-slate-900 px-3 py-1 rounded-full h-fit border border-slate-700">ديسمبر 2020 - أبريل 2021</span>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm md:text-base">
+                            <li>صممت أصول الوسائط الرقمية والمطبوعة (علامات تجارية، مرئيات تسويقية).</li>
+                            <li>طورت مفاهيم إبداعية لمواقع الويب، التطبيقات، ومشاريع الهوية المؤسسية.</li>
+                            <li>أنشأت رسومات تفاعلية لوسائل التواصل الاجتماعي لتعزيز حضور العلامة التجارية.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-20 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-10 text-center">المهارات التقنية والفنية</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- Programming Skills -->
+                <div class="bg-slate-800 p-6 rounded-xl fade-in-up">
+                    <h3 class="text-xl font-bold text-blue-400 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-code"></i> البرمجة والأنظمة
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">Rust</span>
+                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">C++</span>
+                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">Python</span>
+                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">Embedded Systems (STM32, ESP32, Arduino)</span>
+                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">AI & Deep Learning</span>
+                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">Compiler Development</span>
+                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">Memory Allocators</span>
+                    </div>
+                </div>
+
+                <!-- Design Skills -->
+                <div class="bg-slate-800 p-6 rounded-xl fade-in-up delay-100">
+                    <h3 class="text-xl font-bold text-yellow-500 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-pen-ruler"></i> التصميم والهندسة
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">AutoCAD</span>
+                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">3DS Max</span>
+                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">Blender</span>
+                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">SketchUp</span>
+                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">CNC Manufacturing</span>
+                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">PCB Design</span>
+                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">Technical Drawing</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section (Existing) -->
+    <section id="portfolio" class="py-20 bg-slate-800/30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 fade-in-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">أحدث الأعمال</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">معرض الأعمال</h2>
                 <div class="w-20 h-1 bg-blue-500 mx-auto rounded-full mb-8"></div>
                 
-                <!-- Filter Buttons -->
-                <div class="flex flex-wrap justify-center gap-3" id="filters">
+                <div class="flex flex-wrap justify-center gap-3 no-print" id="filters">
                     <button class="filter-btn active border border-gray-700 text-gray-400 px-6 py-2 rounded-full font-medium transition-all hover:border-blue-500 hover:text-white" data-filter="all">الكل</button>
-                    <button class="filter-btn border border-gray-700 text-gray-400 px-6 py-2 rounded-full font-medium transition-all hover:border-blue-500 hover:text-white" data-filter="food">مذاق (Food)</button>
-                    <button class="filter-btn border border-gray-700 text-gray-400 px-6 py-2 rounded-full font-medium transition-all hover:border-blue-500 hover:text-white" data-filter="beauty">جمال (Beauty)</button>
-                    <button class="filter-btn border border-gray-700 text-gray-400 px-6 py-2 rounded-full font-medium transition-all hover:border-blue-500 hover:text-white" data-filter="fintech">تقنية (Fintech)</button>
+                    <button class="filter-btn border border-gray-700 text-gray-400 px-6 py-2 rounded-full font-medium transition-all hover:border-blue-500 hover:text-white" data-filter="design">تصميم (Design)</button>
+                    <button class="filter-btn border border-gray-700 text-gray-400 px-6 py-2 rounded-full font-medium transition-all hover:border-blue-500 hover:text-white" data-filter="tech">تقنية (Tech)</button>
                 </div>
             </div>
 
             <!-- Gallery Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery">
-                
-                <!-- Item 1: Burger Explosion -->
-                <div class="portfolio-item group relative overflow-hidden rounded-2xl cursor-pointer card-hover" data-category="food">
-                    <div class="aspect-w-3 aspect-h-4 h-96 w-full">
-                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Burger Explosion" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <!-- Example Item 1 -->
+                <div class="portfolio-item group relative overflow-hidden rounded-2xl cursor-pointer card-hover" data-category="design">
+                    <div class="aspect-w-3 aspect-h-4 h-64 w-full">
+                        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Interior Design" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
                     </div>
                     <div class="absolute inset-0 image-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-orange-400 font-bold text-sm mb-1">المطاعم</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">انفجار النكهات</h3>
-                        <p class="text-gray-300 text-sm">تصوير احترافي يظهر تفاصيل المكونات الطازجة.</p>
+                        <span class="text-orange-400 font-bold text-sm mb-1">تصميم داخلي</span>
+                        <h3 class="text-xl font-bold text-white">مشروع فيلا فاخرة</h3>
                     </div>
                 </div>
 
-                <!-- Item 2: Fintech Rocket -->
-                <div class="portfolio-item group relative overflow-hidden rounded-2xl cursor-pointer card-hover" data-category="fintech">
-                    <div class="aspect-w-3 aspect-h-4 h-96 w-full">
-                        <img src="https://images.unsplash.com/photo-1620714223084-87bd6c91a56d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rocket Launch" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+                 <!-- Example Item 2 -->
+                 <div class="portfolio-item group relative overflow-hidden rounded-2xl cursor-pointer card-hover" data-category="tech">
+                    <div class="aspect-w-3 aspect-h-4 h-64 w-full">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chip" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
                     </div>
                     <div class="absolute inset-0 image-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-blue-400 font-bold text-sm mb-1">التقنية المالية</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">انطلاق الاستثمار</h3>
-                        <p class="text-gray-300 text-sm">تجسيد فني لنمو العملات الرقمية والمستقبل المالي.</p>
+                        <span class="text-blue-400 font-bold text-sm mb-1">Embedded Systems</span>
+                        <h3 class="text-xl font-bold text-white">برمجة شريحة STM32</h3>
                     </div>
                 </div>
 
-                <!-- Item 3: Serum Bottle -->
-                <div class="portfolio-item group relative overflow-hidden rounded-2xl cursor-pointer card-hover" data-category="beauty">
-                    <div class="aspect-w-3 aspect-h-4 h-96 w-full">
-                        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Serum Bottle" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <!-- Example Item 3 -->
+                <div class="portfolio-item group relative overflow-hidden rounded-2xl cursor-pointer card-hover" data-category="tech">
+                    <div class="aspect-w-3 aspect-h-4 h-64 w-full">
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Code" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
                     </div>
                     <div class="absolute inset-0 image-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-pink-400 font-bold text-sm mb-1">العناية والجمال</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">نقاء الطبيعة</h3>
-                        <p class="text-gray-300 text-sm">تصوير منتجات العناية بالبشرة بإضاءة طبيعية وناعمة.</p>
+                        <span class="text-green-400 font-bold text-sm mb-1">تطوير لغات</span>
+                        <h3 class="text-xl font-bold text-white">مشروع لغة "ألف 5"</h3>
                     </div>
                 </div>
-
-                <!-- Item 4: Futuristic Card -->
-                <div class="portfolio-item group relative overflow-hidden rounded-2xl cursor-pointer card-hover" data-category="fintech">
-                    <div class="aspect-w-3 aspect-h-4 h-96 w-full">
-                        <img src="https://images.unsplash.com/photo-1639815188546-c43c240ff4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Future Card" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="absolute inset-0 image-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-purple-400 font-bold text-sm mb-1">المدفوعات</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">البطاقة الذكية</h3>
-                        <p class="text-gray-300 text-sm">واجهة مستخدم عصرية لخدمات البنوك الرقمية.</p>
-                    </div>
-                </div>
-
-                 <!-- Item 5: Burger on Board -->
-                 <div class="portfolio-item group relative overflow-hidden rounded-2xl cursor-pointer card-hover" data-category="food">
-                    <div class="aspect-w-3 aspect-h-4 h-96 w-full">
-                        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Gourmet Burger" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="absolute inset-0 image-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-orange-400 font-bold text-sm mb-1">المطاعم</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">برجر كلاسيك</h3>
-                        <p class="text-gray-300 text-sm">تقديم فاخر للوجبات السريعة بلمسة فنية.</p>
-                    </div>
-                </div>
-
-                <!-- Item 6: Dropper Close-up -->
-                <div class="portfolio-item group relative overflow-hidden rounded-2xl cursor-pointer card-hover" data-category="beauty">
-                    <div class="aspect-w-3 aspect-h-4 h-96 w-full">
-                        <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9af908?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dropper" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="absolute inset-0 image-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-pink-400 font-bold text-sm mb-1">تفاصيل</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">قطرة الجمال</h3>
-                        <p class="text-gray-300 text-sm">لقطة مقربة (Macro) تظهر قوام المنتج.</p>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
@@ -216,19 +355,19 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div>
-                    <div class="text-4xl font-black text-white mb-2 counter" data-target="150">0</div>
-                    <div class="text-gray-400">مشروع ناجح</div>
+                    <div class="text-4xl font-black text-white mb-2 counter" data-target="15">0</div>
+                    <div class="text-gray-400">مشروع تصميم</div>
                 </div>
                 <div>
-                    <div class="text-4xl font-black text-white mb-2 counter" data-target="85">0</div>
-                    <div class="text-gray-400">عميل سعيد</div>
+                    <div class="text-4xl font-black text-white mb-2 counter" data-target="8">0</div>
+                    <div class="text-gray-400">نظام مدمج</div>
                 </div>
                 <div>
-                    <div class="text-4xl font-black text-white mb-2 counter" data-target="12">0</div>
-                    <div class="text-gray-400">جائزة تصميم</div>
+                    <div class="text-4xl font-black text-white mb-2 counter" data-target="3">0</div>
+                    <div class="text-gray-400">لغات برمجة</div>
                 </div>
                 <div>
-                    <div class="text-4xl font-black text-white mb-2 counter" data-target="5">0</div>
+                    <div class="text-4xl font-black text-white mb-2 counter" data-target="4">0</div>
                     <div class="text-gray-400">سنوات خبرة</div>
                 </div>
             </div>
@@ -236,19 +375,24 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black py-12 border-t border-gray-800">
+    <footer id="contact" class="bg-black py-12 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-bolt text-blue-500 text-xl"></i>
-                <span class="font-bold text-xl text-white">إبداع.تك</span>
+            <div class="flex flex-col items-center md:items-start gap-2">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group text-blue-500 text-xl"></i>
+                    <span class="font-bold text-xl text-white">عبدالرحمن خطيب</span>
+                </div>
+                <p class="text-gray-500 text-sm">مصمم فني ومبرمج أنظمة</p>
             </div>
-            <div class="text-gray-500 text-sm">
-                © 2024 جميع الحقوق محفوظة لتصميمك الرائع.
+            
+            <div class="flex flex-col items-center gap-2 text-sm text-gray-400">
+                <a href="mailto:abdokteb.1@gmail.com" class="hover:text-blue-400 transition-colors"><i class="fa-solid fa-envelope ml-2"></i>abdokteb.1@gmail.com</a>
+                <span class="hover:text-blue-400 transition-colors"><i class="fa-solid fa-phone ml-2"></i>+966 50 041 8371</span>
             </div>
+
             <div class="flex gap-4">
-                <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-blue-600 hover:text-white transition-all"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-pink-600 hover:text-white transition-all"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-blue-800 hover:text-white transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-blue-600 hover:text-white transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-gray-700 hover:text-white transition-all"><i class="fa-brands fa-github"></i></a>
             </div>
         </div>
     </footer>
@@ -260,24 +404,19 @@
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove active class from all
                 filterBtns.forEach(b => {
                     b.classList.remove('active');
                     b.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
                     b.classList.add('text-gray-400', 'border-gray-700');
                 });
-                
-                // Add active class to clicked
                 btn.classList.add('active');
                 
                 const filterValue = btn.getAttribute('data-filter');
-
                 items.forEach(item => {
                     if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
                         item.style.display = 'block';
-                        // Add animation classes
                         item.classList.remove('fade-in-up');
-                        void item.offsetWidth; // trigger reflow
+                        void item.offsetWidth; 
                         item.classList.add('fade-in-up');
                     } else {
                         item.style.display = 'none';
@@ -288,32 +427,28 @@
 
         // Simple Counter Animation
         const counters = document.querySelectorAll('.counter');
-        
         const animateCounters = () => {
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
                 const count = +counter.innerText;
-                const increment = target / 200;
+                const increment = Math.ceil(target / 100);
 
                 if(count < target) {
-                    counter.innerText = Math.ceil(count + increment);
-                    setTimeout(animateCounters, 10);
+                    counter.innerText = count + increment;
+                    setTimeout(animateCounters, 20);
                 } else {
                     counter.innerText = target;
                 }
             });
         }
 
-        // Trigger animation when stats section is in view
         let observer = new IntersectionObserver((entries) => {
             if(entries[0].isIntersecting) {
                 animateCounters();
                 observer.disconnect();
             }
         });
-        
         observer.observe(document.querySelector('.counter'));
-
     </script>
 </body>
 </html>
