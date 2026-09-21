@@ -1,507 +1,1886 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عبدالرحمن خطيب | مصمم تقني ومبرمج</title>
+    <title>Abdulrahman Khateeb | Ultra-Premium CV & Technical Portfolio</title>
+    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <!-- Google Fonts: Montserrat (Design), Tajawal (Arabic), JetBrains Mono (Tech/Code) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:wght@300;400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6.5.1 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        amberAccent: '#f59e0b',
+                        amberGlow: 'rgba(245, 158, 11, 0.15)',
+                        cyanAccent: '#0ea5e9',
+                        darkBg: '#090a0f',
+                        darkPanel: '#11131e',
+                        darkCard: '#181a29',
+                        darkBorder: '#26293d',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'Tajawal', 'sans-serif'],
+                        arabic: ['Tajawal', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #0f172a; color: #f8fafc; overflow-x: hidden; scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
-        
-        .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; transform: translateY(20px); }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-        
-        .glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        
-        /* Project Card Styles - Enhanced for Groups */
-        .project-card { 
-            background: #1e293b; 
-            border: 1px solid rgba(255,255,255,0.05); 
-            border-radius: 1rem;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Custom Ultra-Smooth Scrollbar */
+        ::-webkit-scrollbar {
+            width: 7px;
         }
-        .project-card:hover { 
-            transform: translateY(-8px); 
-            border-color: #3b82f6; 
-            box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.3); 
+        ::-webkit-scrollbar-track {
+            background: #090a0f;
         }
-        .thumb-img {
-            transition: transform 0.3s ease;
+        ::-webkit-scrollbar-thumb {
+            background: #282c40;
+            border-radius: 99px;
+            border: 1px solid rgba(245, 158, 11, 0.2);
         }
-        .project-card:hover .thumb-img {
-            transform: scale(1.1);
-        }
-        
-        /* Modal Styles */
-        .modal {
-            position: fixed; inset: 0; z-index: 100;
-            background: rgba(15, 23, 42, 0.98);
-            backdrop-filter: blur(10px);
-            display: none; opacity: 0; transition: opacity 0.3s ease;
-            overflow-y: auto;
-        }
-        .modal.active { display: block; opacity: 1; }
-        .modal-content { animation: modalUp 0.4s ease-out; }
-        @keyframes modalUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        /* Timeline Styles */
-        .timeline-item::before {
-            content: ''; position: absolute; right: -9px; top: 6px; width: 16px; height: 16px;
-            border-radius: 50%; background: #3b82f6; border: 4px solid #0f172a;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
         }
 
-        /* Engineering Card Styles */
-        .engineering-card { perspective: 2000px; height: 500px; position: relative; cursor: pointer; margin: 2rem 0; }
-        .engineering-content { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); transform: rotateX(10deg); }
-        .engineering-card:hover .engineering-content { transform: rotateX(30deg) rotateY(-10deg) scale(0.9); }
-        .layer { position: absolute; inset: 0; border-radius: 1rem; overflow: hidden; transition: all 0.8s ease; background-size: cover; background-position: center; }
-        .layer-systems { background: #1a1a1a; border: 2px dashed #eab308; transform: translateZ(-50px); opacity: 0.3; }
-        .layer-structure { background: #1e3a8a; border: 2px solid #3b82f6; transform: translateZ(0px); opacity: 0.5; }
-        .layer-base { transform: translateZ(50px); }
-        .engineering-card:hover .layer-base { transform: translateZ(180px) translateY(-40px); }
-        .engineering-card:hover .layer-structure { transform: translateZ(80px) translateY(0px); opacity: 0.9; }
-        .engineering-card:hover .layer-systems { transform: translateZ(-20px) translateY(40px); opacity: 0.8; }
+        /* Blueprint Architectural Grid Background Pattern */
+        .blueprint-bg {
+            background-color: #090a0f;
+            background-image: 
+                linear-gradient(to right, rgba(245, 158, 11, 0.035) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(245, 158, 11, 0.035) 1px, transparent 1px),
+                linear-gradient(to right, rgba(14, 165, 233, 0.015) 2px, transparent 2px),
+                linear-gradient(to bottom, rgba(14, 165, 233, 0.015) 2px, transparent 2px);
+            background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
+            background-position: -1px -1px;
+        }
 
-        @media print { .no-print { display: none !important; } }
+        /* Glowing Accent Effects & Glassmorphism */
+        .glass-card {
+            background: rgba(20, 22, 34, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(245, 158, 11, 0.35);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 0 0 20px 0 rgba(245, 158, 11, 0.12);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF 0%, #fcd34d 50%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tech-gradient-text {
+            background: linear-gradient(135deg, #f59e0b 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge-amber {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.3) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.5);
+        }
+
+        /* Circuit line glowing animation */
+        .circuit-trace {
+            stroke-dasharray: 8;
+            animation: circuitFlow 30s linear infinite;
+        }
+        @keyframes circuitFlow {
+            from { stroke-dashoffset: 200; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Print Layout Rules */
+        @media print {
+            .no-print { display: none !important; }
+            body { background: #090a0f !important; color: #FFF !important; }
+            .glass-card { background: #11131e !important; border: 1px solid #333 !important; box-shadow: none !important; }
+            .cv-container { max-width: 100% !important; margin: 0 !important; padding: 0 !important; border: none !important; }
+            .page-break-inside-avoid { break-inside: avoid; }
+        }
     </style>
 </head>
-<body class="antialiased selection:bg-blue-500 selection:text-white">
+<body class="blueprint-bg text-gray-200 font-sans min-h-screen antialiased selection:bg-amber-500 selection:text-black pb-16">
 
-    <!-- Navbar -->
-    <nav class="glass-nav fixed w-full z-50 no-print">
-        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-layer-group text-blue-500 text-2xl"></i>
-                <span class="font-bold text-xl text-white">عبدالرحمن<span class="text-blue-500">.خطيب</span></span>
+    <!-- Sticky Navigation Switcher Bar -->
+    <header class="no-print sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="w-3 h-3 rounded-full bg-amber-500 animate-pulse"></span>
+                <span class="font-extrabold tracking-wider text-xs sm:text-sm text-white uppercase">
+                    ABDULRAHMAN <span class="gold-gradient-text">KHATEEB</span>
+                </span>
             </div>
-            <div class="hidden md:flex gap-6">
-                <a href="#home" class="hover:text-blue-400 transition">الرئيسية</a>
-                <a href="#about" class="hover:text-blue-400 transition">عني</a>
-                <a href="#portfolio" class="hover:text-blue-400 transition">المشاريع</a>
-                <a href="#videos" class="hover:text-blue-400 transition">الفيديوهات</a>
-                <a href="#resume" class="hover:text-blue-400 transition">الخبرات</a>
-                <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-bold transition-all shadow-lg shadow-blue-500/30">تواصل معي</a>
-            </div>
+
+            <nav class="flex items-center gap-2 text-xs font-semibold">
+                <a href="#cv-section" class="px-3.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 text-slate-300 hover:text-amber-400 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-file-user"></i>
+                    <span>Curriculum Vitae</span>
+                </a>
+                <a href="#portfolio-section" class="px-3.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/40 text-amber-300 hover:bg-amber-500 hover:text-slate-950 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-photo-film"></i>
+                    <span>Portfolio & Media</span>
+                </a>
+                <a href="https://github.com/smo5ke" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-sky-500/50 text-sky-400 hover:text-sky-300 transition-all hidden sm:flex items-center gap-2">
+                    <i class="fa-brands fa-github"></i>
+                    <span>GitHub Repo</span>
+                </a>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero -->
-    <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
-        <div class="absolute inset-0 -z-10">
-            <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl filter animate-pulse"></div>
-            <div class="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl filter"></div>
-        </div>
-        <div class="text-center max-w-4xl px-4 fade-in-up">
-            <h2 class="text-blue-400 font-bold tracking-widest text-sm uppercase mb-4">Designer & Computer science Engineering</h2>
-            <h1 class="text-5xl md:text-7xl font-black text-white mb-6">
-                هندسة التفاصيل <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">وإبداع التصميم</span>
-            </h1>
-            <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
-                تصميم معماري وهندسي متكامل، من المخططات إلى التنفيذ.
-            </p>
-            <div class="flex justify-center gap-4 no-print">
-                <a href="#portfolio" class="bg-blue-600 text-white px-8 py-4 rounded-full font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-500/30">شاهد المعرض الهندسي</a>
-                <button onclick="window.print()" class="border border-gray-600 text-gray-300 px-8 py-4 rounded-full font-bold hover:border-white transition">تحميل CV</button>
-            </div>
-        </div>
-    </section>
+    <!-- Notification Toast -->
+    <div id="toast" class="no-print fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-amber-500 text-slate-950 font-extrabold text-xs sm:text-sm py-3 px-5 rounded-2xl shadow-2xl shadow-amber-500/30 flex items-center gap-3 border border-amber-300">
+        <i class="fa-solid fa-circle-check text-base"></i>
+        <span id="toast-message">Copied successfully!</span>
+    </div>
 
-    <!-- About / Summary Section -->
-    <section id="about" class="py-20 bg-slate-800/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="fade-in-up">
-                    <h2 class="text-3xl font-bold text-white mb-6 border-r-4 border-blue-500 pr-4">ملخص شخصي</h2>
-                    <p class="text-gray-300 leading-8 mb-6 text-lg text-justify">
-                        أنا مصمم فني ومبرمج بخلفية قوية في النمذجة ثلاثية الأبعاد، تصميم الديكور الداخلي، وتطوير الأنظمة المدمجة. لدي خبرة في تصميم الديكورات الداخلية الفاخرة، وإنشاء الرسومات الفنية، وتطوير التطبيقات المدعومة بالذكاء الاصطناعي. تشمل خبراتي برامج التصميم بمساعدة الحاسوب (CAD)، عمل لوحات الدوائر المطبوعة (CNC)، ولغات البرمجة مثل C++ و Rust. كما أنني شغوف ببناء مخصصات الذاكرة المخصصة، وتطوير مترجمات للغة البرمجة العربية "ألف 5".
-                    </p>
-                    <div class="flex gap-4">
-                        <div class="flex items-center gap-2 text-yellow-400">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span>الرياض، السعودية</span>
-                        </div>
-                        <div class="flex items-center gap-2 text-blue-400">
-                            <i class="fa-solid fa-envelope"></i>
-                            <span>abdokteb.1@gmail.com</span>
-                        </div>
-                    </div>
+    <!-- Media Lightbox / Fullscreen Preview Modal -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-2xl flex items-center justify-center p-2 sm:p-6 transition-opacity duration-300">
+        <div class="relative w-full max-w-6xl max-h-[95vh] glass-card rounded-3xl overflow-hidden border border-amber-500/30 flex flex-col shadow-2xl">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-3.5 sm:p-4 border-b border-slate-800 bg-slate-950/90 shrink-0">
+                <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+                    <span id="lightbox-category-badge" class="badge-amber text-amber-300 text-[10px] sm:text-xs uppercase font-mono px-2.5 py-1 rounded-lg">Category</span>
+                    <h3 id="lightbox-title" class="text-xs sm:text-base font-bold text-white">Media Preview</h3>
+                    <span id="lightbox-counter" class="bg-slate-900 border border-slate-800 text-amber-400 font-mono text-[10px] sm:text-xs px-2.5 py-1 rounded-lg">01 / 14</span>
                 </div>
-                <div class="relative fade-in-up delay-100">
-                    <div class="absolute -inset-4 bg-gradient-to-r from-blue-600 to-yellow-500 rounded-lg blur-lg opacity-30"></div>
-                    <div class="relative bg-slate-900 p-8 rounded-lg border border-slate-700">
-                        <h3 class="text-xl font-bold text-white mb-4">التعليم</h3>
-                        <div class="space-y-4">
-                            <div>
-                                <h4 class="text-blue-400 font-bold">بكالوريوس علوم الحاسوب</h4>
-                                <p class="text-gray-400 text-sm">الجامعة العربية المفتوحة (AOU) | الرياض</p>
-                                <p class="text-gray-500 text-xs mt-1">التخرج: يوليو 2025</p>
-                            </div>
-                        </div>
-                        <div class="mt-6 pt-6 border-t border-slate-700">
-                            <h3 class="text-xl font-bold text-white mb-4">اللغات</h3>
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="text-gray-300">العربية</span>
-                                <span class="text-green-400 text-sm">اللغة الأم</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-300">الإنجليزية</span>
-                                <span class="text-yellow-400 text-sm">متقدم (B2)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-        <!-- Resume / Experience Section -->
-    <section id="resume" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-12 text-center">الخبرات المهنية</h2>
-            
-            <div class="relative border-r border-gray-700 mr-4 md:mr-0 md:ml-4 space-y-12">
-                
-                <!-- Experience 1 -->
-                <div class="timeline-item relative pr-8 fade-in-up">
-                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-blue-500 transition-all">
-                        <div class="flex flex-col md:flex-row justify-between mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-white">مصمم تقني</h3>
-                                <p class="text-blue-400 font-medium">AB Homes Interiors | الرياض</p>
-                            </div>
-                            <span class="text-gray-500 text-sm mt-2 md:mt-0 bg-slate-900 px-3 py-1 rounded-full h-fit border border-slate-700">مارس 2024 - مارس 2025</span>
-                        </div>
-                        <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm md:text-base">
-                            <li>تصميم وتطوير رسومات فنية مفصلة ونماذج ثلاثية الأبعاد للديكورات الداخلية الفاخرة.</li>
-                            <li>التنسيق مع المهندسين والمقاولين لضمان تنفيذ المشاريع بسلاسة.</li>
-                            <li>إنشاء تصورات ثلاثية الأبعاد واقعية وعروض تقديمية لتوصيل مفاهيم التصميم.</li>
-                            <li>اختيار المواد والتشطيبات والأثاث بما يتوافق مع تفضيلات العملاء.</li>
-                            <li>تحسين تخطيط المساحات وتصميم التخطيطات لتعزيز الوظائف والجماليات.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Experience 2 -->
-                <div class="timeline-item relative pr-8 fade-in-up delay-100">
-                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-yellow-500 transition-all">
-                        <div class="flex flex-col md:flex-row justify-between mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-white">مصمم تقني</h3>
-                                <p class="text-blue-400 font-medium">Art Deco Design | الرياض</p>
-                            </div>
-                            <span class="text-gray-500 text-sm mt-2 md:mt-0 bg-slate-900 px-3 py-1 rounded-full h-fit border border-slate-700">أبريل 2021 - مارس 2024</span>
-                        </div>
-                        <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm md:text-base">
-                            <li>تطوير رسومات فنية مفصلة ونماذج ثلاثية الأبعاد لتصاميم "آرت ديكو".</li>
-                            <li>التعاون مع المهندسين المعماريين لضمان جدوى التصميم وسلامته الهيكلية.</li>
-                            <li>إنشاء تصورات وعروض تقديمية عالية الجودة لعرض مفاهيم التصميم.</li>
-                            <li>استخدام برامج (CAD) لتحسين وحلول التصميم ودمج عناصر تاريخية في تطبيقات حديثة.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Experience 3 -->
-                <div class="timeline-item relative pr-8 fade-in-up delay-200">
-                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-purple-500 transition-all">
-                        <div class="flex flex-col md:flex-row justify-between mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-white">مصمم جرافيك ووسائط</h3>
-                                <p class="text-blue-400 font-medium">شركة مهام لتقنية المعلومات | الرياض</p>
-                            </div>
-                            <span class="text-gray-500 text-sm mt-2 md:mt-0 bg-slate-900 px-3 py-1 rounded-full h-fit border border-slate-700">ديسمبر 2020 - أبريل 2021</span>
-                        </div>
-                        <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm md:text-base">
-                            <li>صممت أصول الوسائط الرقمية والمطبوعة (علامات تجارية، مرئيات تسويقية).</li>
-                            <li>طورت مفاهيم إبداعية لمواقع الويب، التطبيقات، ومشاريع الهوية المؤسسية.</li>
-                            <li>أنشأت رسومات تفاعلية لوسائل التواصل الاجتماعي لتعزيز حضور العلامة التجارية.</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-slate-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-white mb-10 text-center">المهارات التقنية والفنية</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                
-                <!-- Programming Skills -->
-                <div class="bg-slate-800 p-6 rounded-xl fade-in-up">
-                    <h3 class="text-xl font-bold text-blue-400 mb-6 flex items-center gap-2">
-                        <i class="fa-solid fa-code"></i> البرمجة والأنظمة
-                    </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">Rust</span>
-                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">C++</span>
-                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">Python</span>
-                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">Embedded Systems (STM32, ESP32, Arduino)</span>
-                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">AI & Deep Learning</span>
-                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">Compiler Development</span>
-                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">Memory Allocators</span>
-                    </div>
-                </div>
-
-                <!-- Design Skills -->
-                <div class="bg-slate-800 p-6 rounded-xl fade-in-up delay-100">
-                    <h3 class="text-xl font-bold text-yellow-500 mb-6 flex items-center gap-2">
-                        <i class="fa-solid fa-pen-ruler"></i> التصميم والهندسة
-                    </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">AutoCAD</span>
-                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">3DS Max</span>
-                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">Blender</span>
-                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">SketchUp</span>
-                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">CNC Manufacturing</span>
-                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">PCB Design</span>
-                        <span class="px-4 py-2 bg-slate-700 rounded-lg text-gray-300 border border-slate-600">Technical Drawing</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-
-    <!-- Projects Groups Section (The NEW Gallery) -->
-    <section id="portfolio" class="py-20 bg-slate-800/30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 fade-in-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">مجموعات المشاريع</h2>
-                <div class="w-20 h-1 bg-blue-500 mx-auto rounded-full mb-8"></div>
-                <p class="text-gray-400 mb-8">اضغط على أي مجموعة لاستعراض كافة الصور والمخططات (14 صورة لكل مشروع)</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Project Group 1: Villas -->
-                <div class="project-card cursor-pointer group p-3" onclick="openModal('villas')">
-                    <div class="relative h-64 rounded-xl overflow-hidden mb-3">
-                        <img src="images/villa-1.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x400/1e293b/FFF?text=Villa+Cover'">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-4">
-                            <h3 class="text-xl font-bold text-white">فلل سكنية فاخرة</h3>
-                            <p class="text-gray-300 text-sm">14 صورة • تصميم وتنفيذ</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-3 gap-2">
-                        <div class="h-20 rounded-lg overflow-hidden bg-slate-900 border border-slate-700"><img src="images/villa-2.png" class="w-full h-full object-cover thumb-img" onerror="this.src='https://placehold.co/100/1e293b/FFF?text=2'"></div>
-                        <div class="h-20 rounded-lg overflow-hidden bg-slate-900 border border-slate-700"><img src="images/villa-3.png" class="w-full h-full object-cover thumb-img" onerror="this.src='https://placehold.co/100/1e293b/FFF?text=3'"></div>
-                        <div class="h-20 rounded-lg overflow-hidden bg-slate-900 border border-slate-700 relative"><img src="images/villa-4.png" class="w-full h-full object-cover thumb-img opacity-60" onerror="this.src='https://placehold.co/100/1e293b/FFF?text=4'"><div class="absolute inset-0 flex items-center justify-center font-bold text-white text-sm">+11</div></div>
-                    </div>
-                </div>
-
-                <!-- Project Group 2: Commercial -->
-                <div class="project-card cursor-pointer group p-3" onclick="openModal('commercial')">
-                    <div class="relative h-64 rounded-xl overflow-hidden mb-3">
-                        <img src="images/office-1.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x400/1e293b/FFF?text=Office+Cover'">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-4">
-                            <h3 class="text-xl font-bold text-white">مجمعات تجارية</h3>
-                            <p class="text-gray-300 text-sm">14 صورة • واجهات ومخططات</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-3 gap-2">
-                        <div class="h-20 rounded-lg overflow-hidden bg-slate-900 border border-slate-700"><img src="images/office-2.png" class="w-full h-full object-cover thumb-img" onerror="this.src='https://placehold.co/100/1e293b/FFF?text=2'"></div>
-                        <div class="h-20 rounded-lg overflow-hidden bg-slate-900 border border-slate-700"><img src="images/office-3.png" class="w-full h-full object-cover thumb-img" onerror="this.src='https://placehold.co/100/1e293b/FFF?text=3'"></div>
-                        <div class="h-20 rounded-lg overflow-hidden bg-slate-900 border border-slate-700 relative"><img src="images/office-4.png" class="w-full h-full object-cover thumb-img opacity-60" onerror="this.src='https://placehold.co/100/1e293b/FFF?text=4'"><div class="absolute inset-0 flex items-center justify-center font-bold text-white text-sm">+11</div></div>
-                    </div>
-                </div>
-
-                <!-- Project Group 3: Interior -->
-                <div class="project-card cursor-pointer group p-3" onclick="openModal('interior')">
-                    <div class="relative h-64 rounded-xl overflow-hidden mb-3">
-                        <img src="images/interior-1.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x400/1e293b/FFF?text=Interior+Cover'">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-4">
-                            <h3 class="text-xl font-bold text-white">تصميم داخلي فاخر</h3>
-                            <p class="text-gray-300 text-sm">14 صورة • تفاصيل وديكور</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-3 gap-2">
-                        <div class="h-20 rounded-lg overflow-hidden bg-slate-900 border border-slate-700"><img src="images/interior-2.png" class="w-full h-full object-cover thumb-img" onerror="this.src='https://placehold.co/100/1e293b/FFF?text=2'"></div>
-                        <div class="h-20 rounded-lg overflow-hidden bg-slate-900 border border-slate-700"><img src="images/interior-3.png" class="w-full h-full object-cover thumb-img" onerror="this.src='https://placehold.co/100/1e293b/FFF?text=3'"></div>
-                        <div class="h-20 rounded-lg overflow-hidden bg-slate-900 border border-slate-700 relative"><img src="images/interior-4.png" class="w-full h-full object-cover thumb-img opacity-60" onerror="this.src='https://placehold.co/100/1e293b/FFF?text=4'"><div class="absolute inset-0 flex items-center justify-center font-bold text-white text-sm">+11</div></div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Videos Section (4 Videos) -->
-    <section id="videos" class="py-20 bg-slate-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-white mb-10 text-center">جولات الفيديو</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
-                    <h4 class="text-white font-bold mb-2">جولة اللاندسكيب والحديقة</h4>
-                    <video controls class="w-full rounded-lg shadow-lg" poster="images/villa-1.png">
-                        <source src="videos/video1.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
-                    <h4 class="text-white font-bold mb-2">تفاصيل غرفة النوم</h4>
-                    <video controls class="w-full rounded-lg shadow-lg" poster="images/interior-1.png">
-                        <source src="videos/video2.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
-                    <h4 class="text-white font-bold mb-2">المجلس الفاخر</h4>
-                    <video controls class="w-full rounded-lg shadow-lg" poster="images/interior-2.png">
-                        <source src="videos/video3.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
-                    <h4 class="text-white font-bold mb-2">التصميم الداخلي الكامل</h4>
-                    <video controls class="w-full rounded-lg shadow-lg" poster="images/interior-3.png">
-                        <source src="videos/video4.mp4" type="video/mp4">
-                    </video>
-                </div>
-            </div>
-        </div>
-    </section>
-
-        <!-- Stats Section -->
-    <section class="py-20 bg-blue-900/20 border-y border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                    <div class="text-4xl font-black text-white mb-2 counter" data-target="15">0</div>
-                    <div class="text-gray-400">مشروع تصميم</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-black text-white mb-2 counter" data-target="8">0</div>
-                    <div class="text-gray-400">نظام مدمج</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-black text-white mb-2 counter" data-target="3">0</div>
-                    <div class="text-gray-400">لغات برمجة</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-black text-white mb-2 counter" data-target="4">0</div>
-                    <div class="text-gray-400">سنوات خبرة</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact" class="bg-black py-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex flex-col items-center md:items-start gap-2">
                 <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-layer-group text-blue-500 text-xl"></i>
-                    <span class="font-bold text-xl text-white">عبدالرحمن خطيب</span>
+                    <button onclick="prevLightboxImage()" class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900 border border-slate-700 hover:bg-amber-500 hover:text-black flex items-center justify-center text-slate-300 transition-all" title="Previous (Left Arrow)">
+                        <i class="fa-solid fa-chevron-left text-xs sm:text-sm"></i>
+                    </button>
+                    <button onclick="nextLightboxImage()" class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900 border border-slate-700 hover:bg-amber-500 hover:text-black flex items-center justify-center text-slate-300 transition-all" title="Next (Right Arrow)">
+                        <i class="fa-solid fa-chevron-right text-xs sm:text-sm"></i>
+                    </button>
+                    <button onclick="closeLightbox()" class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900 border border-slate-700 hover:bg-red-500 hover:text-white flex items-center justify-center text-slate-300 transition-all" title="Close (Esc)">
+                        <i class="fa-solid fa-xmark text-sm sm:text-base"></i>
+                    </button>
                 </div>
-                <p class="text-gray-500 text-sm">مصمم فني ومبرمج أنظمة</p>
             </div>
             
-            <div class="flex flex-col items-center gap-2 text-sm text-gray-400">
-                <a href="mailto:abdokteb.1@gmail.com" class="hover:text-blue-400 transition-colors"><i class="fa-solid fa-envelope ml-2"></i>abdokteb.1@gmail.com</a>
-                <span class="hover:text-blue-400 transition-colors"><i class="fa-solid fa-phone ml-2"></i>+966 50 041 8371</span>
+            <!-- Modal Body with image and side arrows -->
+            <div class="relative flex-1 overflow-hidden p-2 sm:p-4 flex items-center justify-center bg-black/70 min-h-[350px]">
+                <button onclick="prevLightboxImage()" class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-2xl bg-black/60 hover:bg-amber-500 text-white hover:text-black border border-white/20 hidden sm:flex items-center justify-center transition-all shadow-xl">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                
+                <div id="lightbox-content-container" class="w-full h-full flex items-center justify-center">
+                    <!-- Media element injected dynamically via JS -->
+                </div>
+
+                <button onclick="nextLightboxImage()" class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-2xl bg-black/60 hover:bg-amber-500 text-white hover:text-black border border-white/20 hidden sm:flex items-center justify-center transition-all shadow-xl">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
             </div>
 
-            <div class="flex gap-4">
-                <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-blue-600 hover:text-white transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-gray-700 hover:text-white transition-all"><i class="fa-brands fa-github"></i></a>
-            </div>
-        </div>
-    </footer>
+            <!-- Modal Footer with Description and Mini Thumbnail Track -->
+            <div class="p-3 sm:p-4 border-t border-slate-800 bg-slate-950/90 flex flex-col gap-3 shrink-0">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                    <p id="lightbox-description" class="text-slate-300 text-xs">Detailed design rendering and technical execution drawing.</p>
+                    <div class="flex items-center gap-2 text-[11px] font-mono text-slate-400 shrink-0">
+                        <span class="hidden md:inline">Use <kbd class="px-1.5 py-0.5 bg-slate-900 rounded border border-slate-700 text-amber-300">←</kbd> <kbd class="px-1.5 py-0.5 bg-slate-900 rounded border border-slate-700 text-amber-300">→</kbd> to browse</span>
+                        <a id="lightbox-github-link" href="https://github.com/smo5ke" target="_blank" class="text-sky-400 hover:underline flex items-center gap-1">
+                            <i class="fa-brands fa-github"></i> smo5ke / portfolio
+                        </a>
+                    </div>
+                </div>
 
-    <!-- Project Gallery Modal -->
-    <div id="galleryModal" class="modal">
-        <div class="max-w-6xl mx-auto p-4 min-h-screen flex flex-col justify-center">
-            <div class="flex justify-between items-center mb-6 text-white bg-slate-900/80 p-4 rounded-xl sticky top-4 z-50">
-                <h3 id="modalTitle" class="text-2xl font-bold">عنوان المشروع</h3>
-                <button onclick="closeModal()" class="w-10 h-10 bg-red-600 rounded-full hover:bg-red-700 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            
-            <div class="modal-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="modalGrid">
-                <!-- Images will be injected here by JS -->
+                <!-- Lightbox Mini Thumbnail Track -->
+                <div id="lightbox-thumbs-track" class="flex items-center gap-2 overflow-x-auto pb-1 max-w-full">
+                    <!-- Injected dynamically based on active gallery -->
+                </div>
             </div>
         </div>
     </div>
 
-    <script>
-        // Generating image paths automatically from 1 to 14
-        const generateImages = (prefix, count) => {
-            return Array.from({length: count}, (_, i) => `images/${prefix}-${i+1}.png`);
-        };
+    <!-- CV MAIN CONTAINER (ORIGINAL CV PRESERVED UNTOUCHED) -->
+    <div id="cv-section" class="cv-container max-w-7xl mx-auto mt-0 sm:mt-12 p-4 sm:p-8 lg:p-12 bg-slate-950/80 border border-slate-800/80 rounded-3xl shadow-2xl relative overflow-hidden backdrop-blur-sm">
+        
+        <!-- Architectural CAD & Circuit Overlay Decorative Graphics -->
+        <svg class="absolute -top-10 -right-10 w-96 h-96 pointer-events-none opacity-20 hidden md:block" viewBox="0 0 400 400" fill="none">
+            <circle cx="200" cy="200" r="160" stroke="#f59e0b" stroke-width="1" stroke-dasharray="6 6"/>
+            <circle cx="200" cy="200" r="120" stroke="#0ea5e9" stroke-width="1"/>
+            <path class="circuit-trace" d="M200 40 L200 200 L320 200 L360 240" stroke="#f59e0b" stroke-width="2"/>
+            <path class="circuit-trace" d="M200 360 L200 200 L80 200 L40 160" stroke="#0ea5e9" stroke-width="2"/>
+            <rect x="185" y="185" width="30" height="30" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+        </svg>
 
-        const projectsData = {
-            'villas': generateImages('villa', 14),      // Will generate images/villa-1.png to images/villa-14.png
-            'commercial': generateImages('office', 14), // Will generate images/office-1.png to images/office-14.png
-            'interior': generateImages('interior', 14)  // Will generate images/interior-1.png to images/interior-14.png
-        };
+        <header class="relative z-10 pb-8 border-b border-slate-800/80">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 text-center lg:text-left">
+                
+                <div>
+                    <!-- Name and Primary Title -->
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase mb-2">
+                        ABDULRAHMAN <span class="gold-gradient-text">KHATEEB</span>
+                    </h1>
+                    <p class="text-amber-400 font-bold text-sm sm:text-xl tracking-widest uppercase flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                        <span>TECHNICAL DESIGNER</span>
+                        <span class="text-slate-600">•</span>
+                        <span class="text-sky-400">PROGRAMMER & SYSTEMS ENGINEER</span>
+                    </p>
+                </div>
 
-        function openModal(projectType) {
-            const modal = document.getElementById('galleryModal');
-            const grid = document.getElementById('modalGrid');
-            const title = document.getElementById('modalTitle');
+                <!-- Contact Pills Matrix -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-end gap-2.5 text-xs">
+                    <div onclick="copyToClipboard('Riyadh, Saudi Arabia 09848', 'Location copied!')" class="group cursor-pointer bg-slate-900/90 hover:bg-amber-500/10 border border-slate-800 hover:border-amber-500/50 p-2.5 px-4 rounded-xl transition-all flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-[10px] uppercase tracking-wider text-slate-400 font-mono">Location</p>
+                            <p class="font-semibold text-slate-200 group-hover:text-amber-300">Riyadh, Saudi Arabia 09848</p>
+                        </div>
+                    </div>
+
+                    <div onclick="copyToClipboard('+966500418371', 'Phone number copied!')" class="group cursor-pointer bg-slate-900/90 hover:bg-amber-500/10 border border-slate-800 hover:border-amber-500/50 p-2.5 px-4 rounded-xl transition-all flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-[10px] uppercase tracking-wider text-slate-400 font-mono">Phone</p>
+                            <p class="font-semibold text-slate-200 group-hover:text-amber-300">+966 50 041 8371</p>
+                        </div>
+                    </div>
+
+                    <div onclick="copyToClipboard('abdokteb.1@gmail.com', 'Email copied!')" class="group cursor-pointer bg-slate-900/90 hover:bg-amber-500/10 border border-slate-800 hover:border-amber-500/50 p-2.5 px-4 rounded-xl transition-all flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-[10px] uppercase tracking-wider text-slate-400 font-mono">Email</p>
+                            <p class="font-semibold text-slate-200 group-hover:text-amber-300">abdokteb.1@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <section class="my-8 glass-card p-6 rounded-2xl relative overflow-hidden border border-amber-500/20">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                
+                <!-- Pillar 1: Architectural & CAD Design -->
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-600/5 border border-amber-500/40 flex items-center justify-center text-amber-400 shrink-0 text-xl shadow-lg shadow-amber-500/10">
+                        <i class="fa-solid fa-drafting-compass"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-amber-300 mb-1">Architectural & CAD Engineering</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            High-precision 3D modeling, working drawings, interior space planning, material selections, and on-site implementation supervision for luxury residential and commercial projects.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pillar 2: Systems Programming & Embedded -->
+                <div class="flex items-start gap-4 md:border-l md:border-slate-800 md:pl-6">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-500/20 to-sky-600/5 border border-sky-500/40 flex items-center justify-center text-sky-400 shrink-0 text-xl shadow-lg shadow-sky-500/10">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-sky-300 mb-1">Systems Programming & Hardware</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Low-level engineering in <span class="text-amber-400 font-mono">Rust & C++</span>, STM32/ESP32 embedded dev, PCB milling, custom memory allocators, and compiler development for Arabic <span class="font-arabic text-amber-300">“ألف 5”</span>.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <main class="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
             
-            // Set Title
-            if(projectType === 'villas') title.innerText = 'مشروع فلل سكنية فاخرة';
-            if(projectType === 'commercial') title.innerText = 'مجمعات تجارية وإدارية';
-            if(projectType === 'interior') title.innerText = 'التصميم الداخلي والديكور';
+            <!-- COLUMN 1: WORK HISTORY (5 Cols on Desktop) -->
+            <section class="lg:col-span-5 space-y-6">
+                
+                <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-sm">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                        <h2 class="text-base sm:text-lg font-bold text-white uppercase tracking-wider">Work History</h2>
+                    </div>
+                    <span class="text-[11px] font-mono text-slate-500">2020 – 2026</span>
+                </div>
 
-            // Clear previous images
-            grid.innerHTML = '';
+                <div class="space-y-6 relative border-l-2 border-slate-800/80 ml-3 pl-4 sm:pl-6">
+                    
+                    <!-- JOB 1: FEELGARI -->
+                    <div class="discipline-card cad-item relative page-break-inside-avoid group">
+                        <!-- Timeline Node Badge -->
+                        <div class="absolute -left-[25px] sm:-left-[33px] top-0 badge-amber text-amber-300 font-mono font-bold text-[10px] sm:text-xs py-1 px-2 rounded-lg shadow-md">
+                            25–26
+                        </div>
 
-            // Add new images
-            const images = projectsData[projectType] || [];
-            images.forEach((imgSrc, index) => {
-                const div = document.createElement('div');
-                div.className = `rounded-xl overflow-hidden shadow-lg border border-slate-700 ${index === 0 ? 'md:col-span-2 md:row-span-2' : ''}`; // First image is big
-                div.innerHTML = `<img src="${imgSrc}" class="w-full h-full object-cover hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/1e293b/FFF?text=Image+${index+1}'">`;
-                grid.appendChild(div);
-            });
+                        <div class="glass-card p-4 sm:p-5 rounded-2xl">
+                            <div class="flex flex-wrap justify-between items-start gap-1 mb-1">
+                                <h3 class="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors">Feelgari</h3>
+                                <span class="text-[10px] font-mono bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded border border-amber-500/30">Oct 2025 – Sep 2026</span>
+                            </div>
+                            <p class="text-xs text-amber-400 font-semibold mb-3 flex items-center gap-2">
+                                <i class="fa-solid fa-compass-drafting text-amber-500/70"></i>
+                                TECHNICAL DESIGNER <span class="text-slate-600">•</span> <span class="text-slate-400 font-normal">Riyadh, Saudi Arabia</span>
+                            </p>
+                            <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Developed detailed technical drawings and 3D models for high-end residential and commercial interior projects.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Created realistic 3D visualizations and renderings to communicate design concepts and support client presentations.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Coordinated with architects, contractors, and suppliers to ensure accurate implementation of design specifications.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Selected materials, finishes, and furnishings aligned with client preferences and project requirements.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Optimized space planning and interior layouts to balance functionality, aesthetics, and efficient use of space.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Conducted on-site inspections and resolved technical design issues to maintain quality and consistency with approved drawings.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Stop scrolling
+                    <!-- JOB 2: AB HOMES -->
+                    <div class="discipline-card cad-item relative page-break-inside-avoid group pt-2">
+                        <div class="absolute -left-[25px] sm:-left-[33px] top-2 badge-amber text-amber-300 font-mono font-bold text-[10px] sm:text-xs py-1 px-2 rounded-lg shadow-md">
+                            24–25
+                        </div>
+
+                        <div class="glass-card p-4 sm:p-5 rounded-2xl">
+                            <div class="flex flex-wrap justify-between items-start gap-1 mb-1">
+                                <h3 class="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors">AB Homes Interiors</h3>
+                                <span class="text-[10px] font-mono bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Mar 2024 – Mar 2025</span>
+                            </div>
+                            <p class="text-xs text-amber-400 font-semibold mb-3 flex items-center gap-2">
+                                <i class="fa-solid fa-house-laptop text-amber-500/70"></i>
+                                TECHNICAL DESIGNER <span class="text-slate-600">•</span> <span class="text-slate-400 font-normal">Riyadh, Saudi Arabia</span>
+                            </p>
+                            <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Designed and developed detailed technical drawings and 3D models for high-end residential and commercial interiors.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Coordinated with architects, contractors, and suppliers to support smooth project execution.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Created realistic 3D visualizations and presentations to communicate design concepts effectively.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Selected materials, finishes, and furnishings aligned with client preferences and project requirements.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Optimized space planning and design layouts to enhance functionality and aesthetics.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Conducted on-site inspections to verify that designs were accurately implemented.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Researched and integrated contemporary interior design trends and innovative solutions into projects.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- JOB 3: ART DECO DESIGN -->
+                    <div class="discipline-card cad-item relative page-break-inside-avoid group pt-2">
+                        <div class="absolute -left-[25px] sm:-left-[33px] top-2 badge-amber text-amber-300 font-mono font-bold text-[10px] sm:text-xs py-1 px-2 rounded-lg shadow-md">
+                            21–24
+                        </div>
+
+                        <div class="glass-card p-4 sm:p-5 rounded-2xl">
+                            <div class="flex flex-wrap justify-between items-start gap-1 mb-1">
+                                <h3 class="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors">Art Deco Design</h3>
+                                <span class="text-[10px] font-mono bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Apr 2021 – Mar 2024</span>
+                            </div>
+                            <p class="text-xs text-amber-400 font-semibold mb-3 flex items-center gap-2">
+                                <i class="fa-solid fa-cubes text-amber-500/70"></i>
+                                TECHNICAL DESIGNER <span class="text-slate-600">•</span> <span class="text-slate-400 font-normal">Riyadh, Saudi Arabia</span>
+                            </p>
+                            <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Developed detailed technical drawings and 3D models for Art Deco-inspired interior and exterior designs.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Collaborated with architects and engineers to ensure design feasibility and structural integrity.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Created high-quality visualizations and renderings to present design concepts to clients.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Used CAD and 3D modeling software to refine and optimize design solutions.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Researched Art Deco styles and incorporated historical elements into modern design applications.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- JOB 4: MAHAM IT -->
+                    <div class="discipline-card systems-item relative page-break-inside-avoid group pt-2">
+                        <div class="absolute -left-[25px] sm:-left-[33px] top-2 badge-amber text-amber-300 font-mono font-bold text-[10px] sm:text-xs py-1 px-2 rounded-lg shadow-md">
+                            20–21
+                        </div>
+
+                        <div class="glass-card p-4 sm:p-5 rounded-2xl">
+                            <div class="flex flex-wrap justify-between items-start gap-1 mb-1">
+                                <h3 class="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors font-arabic">شركة مهام لتقنية المعلومات</h3>
+                                <span class="text-[10px] font-mono bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Dec 2020 – Apr 2021</span>
+                            </div>
+                            <p class="text-xs text-amber-400 font-semibold mb-3 flex items-center gap-2">
+                                <i class="fa-solid fa-laptop-code text-amber-500/70"></i>
+                                DESIGNER <span class="text-slate-600">•</span> <span class="text-slate-400 font-normal">Riyadh, Saudi Arabia</span>
+                            </p>
+                            <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Designed digital and print media assets, including branding materials, marketing visuals, and UI/UX elements.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Developed creative concepts for websites, mobile applications, and corporate identity projects.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Collaborated with developers to integrate design elements into digital platforms.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Created social media graphics and promotional materials to enhance brand presence.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Researched design trends and user experience practices to improve project outcomes.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-caret-right text-amber-500 mt-1 shrink-0"></i>
+                                    <span>Managed multiple design projects within tight deadlines while maintaining high-quality standards.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="lg:col-span-3 space-y-6">
+                
+                <!-- Professional Summary Block -->
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3 border-b border-slate-800/80 pb-3">
+                        <div class="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-sm">
+                            <i class="fa-solid fa-user-gear"></i>
+                        </div>
+                        <h2 class="text-base sm:text-lg font-bold text-white uppercase tracking-wider">Summary</h2>
+                    </div>
+
+                    <div class="glass-card p-4 rounded-2xl relative">
+                        <i class="fa-solid fa-quote-left text-amber-500/10 text-4xl absolute top-3 right-3 pointer-events-none"></i>
+                        <p class="text-xs text-slate-200 leading-relaxed text-justify relative z-10">
+                            Technical Designer and Programmer with experience in high-end interior design, 3D modeling, technical drafting, and embedded systems development. Skilled in creating detailed technical drawings, realistic visualizations, and functional design layouts for residential and commercial projects. Technical expertise includes CAD software, CNC machining, PCB milling, and programming in Rust, C++, and Python. Additional interests and experience include AI-powered applications, custom memory allocators, and interpreter development for the Arabic programming language <span class="text-amber-300 font-bold font-arabic">“ألف 5”</span>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Expressive Emblem / Icon Box -->
+                <div class="glass-card p-8 rounded-2xl border border-amber-500/30 flex items-center justify-center relative overflow-hidden group hover:border-amber-500/50 transition-all">
+                    <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all"></div>
+                    <div class="absolute -left-8 -top-8 w-32 h-32 bg-sky-500/10 rounded-full blur-2xl group-hover:bg-sky-500/20 transition-all"></div>
+                    <div class="relative z-10 w-20 h-20 rounded-3xl bg-gradient-to-br from-amber-500/20 via-slate-900 to-sky-500/20 border border-amber-500/40 flex items-center justify-center shadow-2xl shadow-amber-500/10 group-hover:scale-105 transition-all">
+                        <i class="fa-solid fa-compass-drafting text-3xl gold-gradient-text"></i>
+                    </div>
+                </div>
+
+                <!-- Education Card -->
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3 border-b border-slate-800/80 pb-3">
+                        <div class="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-sm">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h2 class="text-base sm:text-lg font-bold text-white uppercase tracking-wider">Education</h2>
+                    </div>
+
+                    <div class="glass-card p-4 rounded-2xl flex items-start gap-3">
+                        <div class="badge-amber text-amber-300 font-mono font-bold text-xs py-1 px-2.5 rounded-lg shrink-0 mt-0.5">
+                            Jul 2025
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-bold text-white">Bachelor of Science in Computer Science</h3>
+                            <p class="text-[11px] text-amber-400 font-semibold mt-0.5">AOU | Riyadh, Saudi Arabia</p>
+                            <p class="text-[10px] text-slate-400 mt-1">Focus on software architecture, algorithms & low-level computing systems.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Passion & Focus Badges -->
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3 border-b border-slate-800/80 pb-3">
+                        <div class="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-sm">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <h2 class="text-base sm:text-lg font-bold text-white uppercase tracking-wider">Passions</h2>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div class="p-2.5 glass-card rounded-xl flex items-center gap-2.5 border border-slate-800">
+                            <i class="fa-solid fa-microchip text-amber-400 text-sm"></i>
+                            <span class="text-slate-300 text-[11px]">Embedded Dev</span>
+                        </div>
+                        <div class="p-2.5 glass-card rounded-xl flex items-center gap-2.5 border border-slate-800">
+                            <i class="fa-solid fa-brain text-sky-400 text-sm"></i>
+                            <span class="text-slate-300 text-[11px]">AI Applications</span>
+                        </div>
+                        <div class="p-2.5 glass-card rounded-xl flex items-center gap-2.5 border border-slate-800">
+                            <i class="fa-solid fa-memory text-emerald-400 text-sm"></i>
+                            <span class="text-slate-300 text-[11px]">Custom Allocators</span>
+                        </div>
+                        <div class="p-2.5 glass-card rounded-xl flex items-center gap-2.5 border border-slate-800">
+                            <i class="fa-solid fa-code text-amber-400 text-sm"></i>
+                            <span class="text-slate-300 text-[11px] font-arabic">مترجم ألف 5</span>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="lg:col-span-4 space-y-6">
+                
+                <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-sm">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h2 class="text-base sm:text-lg font-bold text-white uppercase tracking-wider">Technical Skills</h2>
+                    </div>
+                    <span class="text-[11px] font-mono text-slate-500">Expertise</span>
+                </div>
+
+                <!-- CATEGORY 1: DESIGN & VISUALIZATION -->
+                <div class="discipline-card cad-item glass-card p-4 sm:p-5 rounded-2xl space-y-4">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-2">
+                            <i class="fa-solid fa-cube"></i> Design & Visualization
+                        </h3>
+                        <span class="text-[10px] font-mono text-slate-400">CAD / 3D</span>
+                    </div>
+
+                    <!-- Skill Item: 3D Modeling -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs font-medium">
+                            <span class="text-slate-200">3D Modeling & Rendering</span>
+                            <span class="text-amber-400 font-mono text-[10px]">90%</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 font-mono">AutoCAD, SketchUp, 3ds Max, Blender</p>
+                        <!-- Deluxe Progress Bar -->
+                        <div class="h-2 w-full bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="h-full bg-gradient-to-r from-amber-600 to-amber-400 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Item: Technical Drawing -->
+                    <div class="space-y-1.5 pt-1">
+                        <div class="flex justify-between text-xs font-medium">
+                            <span class="text-slate-200">Technical Drawing & Drafting</span>
+                            <span class="text-amber-400 font-mono text-[10px]">95%</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 font-mono">CAD documentation, blueprints, working details</p>
+                        <div class="h-2 w-full bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="h-full bg-gradient-to-r from-amber-600 to-amber-400 rounded-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Item: Interior Styles -->
+                    <div class="space-y-1.5 pt-1">
+                        <div class="flex justify-between text-xs font-medium">
+                            <span class="text-slate-200">Interior & Exterior Design</span>
+                            <span class="text-amber-400 font-mono text-[10px]">88%</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 font-mono">Art Deco, modern, and classic styles</p>
+                        <div class="h-2 w-full bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="h-full bg-gradient-to-r from-amber-600 to-amber-400 rounded-full" style="width: 88%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Item: Space Planning -->
+                    <div class="space-y-1.5 pt-1">
+                        <div class="flex justify-between text-xs font-medium">
+                            <span class="text-slate-200">Materials & Space Planning</span>
+                            <span class="text-amber-400 font-mono text-[10px]">92%</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 font-mono">Material selection, finishes, layout optimization</p>
+                        <div class="h-2 w-full bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="h-full bg-gradient-to-r from-amber-600 to-amber-400 rounded-full" style="width: 92%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Item: Project Coordination -->
+                    <div class="space-y-1.5 pt-1">
+                        <div class="flex justify-between text-xs font-medium">
+                            <span class="text-slate-200">Site Supervision & Coordination</span>
+                            <span class="text-amber-400 font-mono text-[10px]">90%</span>
+                        </div>
+                        <div class="h-2 w-full bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="h-full bg-gradient-to-r from-amber-600 to-amber-400 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORY 2: PROGRAMMING & ENGINEERING -->
+                <div class="discipline-card systems-item glass-card p-4 sm:p-5 rounded-2xl space-y-4">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-sky-400 flex items-center gap-2">
+                            <i class="fa-solid fa-code"></i> Programming & Engineering
+                        </h3>
+                        <span class="text-[10px] font-mono text-slate-400">Systems</span>
+                    </div>
+
+                    <!-- Skill Item: Languages -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs font-medium">
+                            <span class="text-slate-200">Core Programming Languages</span>
+                            <span class="text-sky-400 font-mono text-[10px]">High Perf</span>
+                        </div>
+                        <p class="text-[10px] text-amber-300 font-mono">Rust, C++, Python</p>
+                        <div class="h-2 w-full bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="h-full bg-gradient-to-r from-sky-600 to-sky-400 rounded-full" style="width: 94%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Item: Embedded -->
+                    <div class="space-y-1.5 pt-1">
+                        <div class="flex justify-between text-xs font-medium">
+                            <span class="text-slate-200">Embedded Systems Dev</span>
+                            <span class="text-sky-400 font-mono text-[10px]">Microcontrollers</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 font-mono">STM32, ESP32, Arduino architecture</p>
+                        <div class="h-2 w-full bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="h-full bg-gradient-to-r from-sky-600 to-sky-400 rounded-full" style="width: 88%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Item: Compiler -->
+                    <div class="space-y-1.5 pt-1">
+                        <div class="flex justify-between text-xs font-medium">
+                            <span class="text-slate-200">Compiler & Interpreter Dev</span>
+                            <span class="text-sky-400 font-mono text-[10px]">Languages</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 font-arabic">مترجم لغة البرمجة “ألف 5”</p>
+                        <div class="h-2 w-full bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="h-full bg-gradient-to-r from-sky-600 to-sky-400 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Item: Digital Fabrication -->
+                    <div class="space-y-1.5 pt-1">
+                        <div class="flex justify-between text-xs font-medium">
+                            <span class="text-slate-200">Digital Fabrication</span>
+                            <span class="text-sky-400 font-mono text-[10px]">Hardware</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 font-mono">CNC machining, 3D printing, PCB milling</p>
+                        <div class="h-2 w-full bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div class="h-full bg-gradient-to-r from-sky-600 to-sky-400 rounded-full" style="width: 86%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LANGUAGES SECTION -->
+                <div class="glass-card p-4 rounded-2xl space-y-3">
+                    <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white border-b border-slate-800 pb-2">
+                        <i class="fa-solid fa-language text-amber-400"></i>
+                        <span>Languages</span>
+                    </div>
+
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between items-center p-2.5 bg-slate-900/60 rounded-xl border border-slate-800">
+                            <span class="text-slate-200 font-semibold font-arabic">Arabic (العربية)</span>
+                            <span class="text-amber-400 font-bold px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-[10px]">Native</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2.5 bg-slate-900/60 rounded-xl border border-slate-800">
+                            <span class="text-slate-200 font-semibold">English</span>
+                            <span class="text-amber-400 font-bold px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-[10px]">Upper Intermediate — B2</span>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- NEW: FULL PORTFOLIO MEDIA SHOWCASE SECTION -->
+    <section id="portfolio-section" class="max-w-7xl mx-auto mt-12 p-4 sm:p-8 lg:p-12 bg-slate-950/80 border border-amber-500/20 rounded-3xl shadow-2xl relative overflow-hidden backdrop-blur-sm">
+        
+        <!-- Header & Title -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-slate-800 pb-8">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono mb-3">
+                    <i class="fa-solid fa-folder-open"></i> github.com/smo5ke/portfolio
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white uppercase">
+                    WORK <span class="gold-gradient-text">PORTFOLIO</span> & MEDIA
+                </h2>
+                <p class="text-slate-400 text-xs sm:text-sm mt-2 max-w-2xl leading-relaxed">
+                    Explore high-resolution 3D renders, CAD technical blueprints, site execution videos, UI designs, and software engineering projects structured directly from the official project repositories.
+                </p>
+            </div>
+
+            <!-- GitHub Repo Link Badge -->
+            <a href="https://github.com/smo5ke" target="_blank" rel="noopener noreferrer" class="group glass-card p-4 rounded-2xl border border-amber-500/30 hover:border-amber-400 flex items-center gap-4 shrink-0">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 text-2xl group-hover:scale-110 transition-transform">
+                    <i class="fa-brands fa-github"></i>
+                </div>
+                <div>
+                    <p class="text-[11px] font-mono text-slate-400 uppercase">Official Source</p>
+                    <p class="text-xs font-bold text-white group-hover:text-amber-300 transition-colors">smo5ke / portfolio</p>
+                    <p class="text-[10px] text-amber-400 font-mono mt-0.5">Explore raw folders & assets <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></p>
+                </div>
+            </a>
+        </div>
+
+
+
+        <!-- MASTER PROJECT GALLERIES (3 GALLERIES - 42 REAL RENDERS) -->
+        <div class="space-y-12 my-8">
+            
+            <!-- PROJECT GALLERY 1: VILLA ARCHITECTURE -->
+            <div class="project-gallery-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/40 transition-all p-5 sm:p-7 space-y-6">
+                <!-- Header -->
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-800/80 pb-5">
+                    <div class="space-y-1.5">
+                        <div class="flex flex-wrap items-center gap-2.5">
+                            <span class="badge-amber text-amber-300 text-xs font-mono font-bold px-3 py-1 rounded-lg flex items-center gap-1.5">
+                                <i class="fa-solid fa-hotel text-[11px]"></i> Architectural Facades & Villas
+                            </span>
+                            <span class="bg-slate-900 border border-slate-800 text-slate-300 text-xs font-mono px-3 py-1 rounded-lg">
+                                <i class="fa-solid fa-images text-amber-400 mr-1"></i> 14 High-Res Renders
+                            </span>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-black text-white uppercase tracking-tight">
+                            Modern Luxury Villa & <span class="gold-gradient-text">Palace Architecture</span>
+                        </h3>
+                        <p class="text-xs text-amber-400/90 font-arabic font-semibold">
+                            مشروع تصميم الفلل والقصور السكنية المعمارية والواجهات الخارجية الفاخرة
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-3 shrink-0">
+                        <button onclick="openProjectLightbox('villa', 0)" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-all shadow-lg shadow-amber-500/20">
+                            <i class="fa-solid fa-expand"></i>
+                            <span>عرض المعرض بالكامل (14 لقطة)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Viewer -->
+                <div class="relative w-full rounded-2xl overflow-hidden bg-slate-950 border border-slate-800/80 group">
+                    <div class="relative w-full aspect-[16/9] sm:aspect-[21/9] lg:aspect-[2.3/1] overflow-hidden cursor-pointer" onclick="openProjectLightboxCurrent('villa')">
+                        <img id="villa-main-img" src="images/villa-1.png" alt="Modern Luxury Villa Architecture" class="w-full h-full object-cover object-center group-hover:scale-[1.015] transition-transform duration-700" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/20 pointer-events-none"></div>
+
+                        <!-- Top Left Floating Badge -->
+                        <div class="absolute top-4 left-4 z-10 flex items-center gap-2">
+                            <span id="villa-counter" class="bg-black/75 backdrop-blur-md border border-white/20 text-white font-mono text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-2 shadow-lg">
+                                <i class="fa-solid fa-camera text-amber-400"></i>
+                                <span>Render 01 / 14</span>
+                            </span>
+                        </div>
+
+                        <!-- Top Right Floating Fullscreen Button -->
+                        <div class="absolute top-4 right-4 z-10">
+                            <span class="w-10 h-10 rounded-xl bg-black/75 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:bg-amber-500 group-hover:text-black transition-all shadow-lg">
+                                <i class="fa-solid fa-expand"></i>
+                            </span>
+                        </div>
+
+                        <!-- Left / Right Slide Navigation Buttons -->
+                        <button onclick="event.stopPropagation(); prevProjectImage('villa')" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-2xl bg-black/60 hover:bg-amber-500 text-white hover:text-black border border-white/20 flex items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-110 shadow-xl" title="Previous Render">
+                            <i class="fa-solid fa-chevron-left text-sm"></i>
+                        </button>
+                        <button onclick="event.stopPropagation(); nextProjectImage('villa')" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-2xl bg-black/60 hover:bg-amber-500 text-white hover:text-black border border-white/20 flex items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-110 shadow-xl" title="Next Render">
+                            <i class="fa-solid fa-chevron-right text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 14-Thumbnail Interactive Filmstrip -->
+                <div class="space-y-2.5">
+                    <div class="flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <span class="flex items-center gap-1.5 text-slate-300">
+                            <i class="fa-solid fa-layer-group text-amber-400"></i> لقطات المعرض (انقر على أي صورة للتنقل المباشر):
+                        </span>
+                        <span class="text-[11px] text-amber-400/90 font-mono">14 Renders</span>
+                    </div>
+
+                    <div class="grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-14 gap-2">
+                        <div onclick="selectProjectImage('villa', 0)" class="villa-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-amber-500 shadow-md shadow-amber-500/30 opacity-100 group transition-all">
+                            <img src="images/villa-1.png" alt="Villa 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#01</span>
+                        </div>
+                        <div onclick="selectProjectImage('villa', 1)" class="villa-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/villa-2.png" alt="Villa 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#02</span>
+                        </div>
+                        <div onclick="selectProjectImage('villa', 2)" class="villa-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/villa-3.png" alt="Villa 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#03</span>
+                        </div>
+                        <div onclick="selectProjectImage('villa', 3)" class="villa-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/villa-4.png" alt="Villa 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#04</span>
+                        </div>
+                        <div onclick="selectProjectImage('villa', 4)" class="villa-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/villa-5.png" alt="Villa 5" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#05</span>
+                        </div>
+                        <div onclick="selectProjectImage('villa', 5)" class="villa-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/villa-6.png" alt="Villa 6" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#06</span>
+                        </div>
+                        <div onclick="selectProjectImage('villa', 6)" class="villa-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/villa-7.png" alt="Villa 7" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#07</span>
+                        </div>
+                        <div onclick="selectProjectImage('villa', 7)" class="villa-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/villa-8.png" alt="Villa 8" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#08</span>
+                        </div>
+                        <div onclick="selectProjectImage('villa', 8)" class="villa-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/villa-9.png" alt="Villa 9" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#09</span>
+                        </div>
+                        <div onclick="selectProjectImage('villa', 9)" class="villa-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/villa-10.png" alt="Villa 10" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#10</span>
+                        </div>
+                        <div onclick="selectProjectImage('villa', 10)" class="villa-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/villa11.png" alt="Villa 11" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#11</span>
+                        </div>
+                        <div onclick="selectProjectImage('villa', 11)" class="villa-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/villa12.png" alt="Villa 12" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#12</span>
+                        </div>
+                        <div onclick="selectProjectImage('villa', 12)" class="villa-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/villa-13.png" alt="Villa 13" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#13</span>
+                        </div>
+                        <div onclick="selectProjectImage('villa', 13)" class="villa-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/villa-14.png" alt="Villa 14" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#14</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description & Stack -->
+                <div class="pt-4 border-t border-slate-800/80 grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+                    <div class="lg:col-span-8">
+                        <p class="text-xs text-slate-300 leading-relaxed font-arabic">
+                            دراسة معمارية شاملة لتصميم وتنفيذ فيلا وقصر سكني معاصر؛ تشمل توزيع الكتل الفراغية، واجهات حجر الترافرتين (Travertine Cladding)، الزجاج البانورامي المزدوج (Double-Height Glazing)، كاسرات الشمس الخشبية، والإضاءة المعمارية مع مخططات التنفيذ والتنسيق الحدائقي.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-4 flex flex-wrap lg:justify-end items-center gap-1.5 text-[10px] font-mono">
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">AutoCAD</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">3ds Max</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">V-Ray</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">Lumion</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT GALLERY 2: INTERIOR ARCHITECTURE -->
+            <div class="project-gallery-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/40 transition-all p-5 sm:p-7 space-y-6">
+                <!-- Header -->
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-800/80 pb-5">
+                    <div class="space-y-1.5">
+                        <div class="flex flex-wrap items-center gap-2.5">
+                            <span class="badge-amber text-amber-300 text-xs font-mono font-bold px-3 py-1 rounded-lg flex items-center gap-1.5">
+                                <i class="fa-solid fa-couch text-[11px]"></i> Luxury Interior Architecture
+                            </span>
+                            <span class="bg-slate-900 border border-slate-800 text-slate-300 text-xs font-mono px-3 py-1 rounded-lg">
+                                <i class="fa-solid fa-images text-amber-400 mr-1"></i> 14 High-Res Renders
+                            </span>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-black text-white uppercase tracking-tight">
+                            Luxury Interior Architecture & <span class="gold-gradient-text">Living Spaces</span>
+                        </h3>
+                        <p class="text-xs text-amber-400/90 font-arabic font-semibold">
+                            مشروع التصميم الداخلي والديكور السكني الفاخر والمساحات المعيشية الراقية
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-3 shrink-0">
+                        <button onclick="openProjectLightbox('interior', 0)" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-all shadow-lg shadow-amber-500/20">
+                            <i class="fa-solid fa-expand"></i>
+                            <span>عرض المعرض بالكامل (14 لقطة)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Viewer -->
+                <div class="relative w-full rounded-2xl overflow-hidden bg-slate-950 border border-slate-800/80 group">
+                    <div class="relative w-full aspect-[16/9] sm:aspect-[21/9] lg:aspect-[2.3/1] overflow-hidden cursor-pointer" onclick="openProjectLightboxCurrent('interior')">
+                        <img id="interior-main-img" src="images/interior-1.png" alt="Luxury Interior Design Render" class="w-full h-full object-cover object-center group-hover:scale-[1.015] transition-transform duration-700" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/20 pointer-events-none"></div>
+
+                        <!-- Top Left Floating Badge -->
+                        <div class="absolute top-4 left-4 z-10 flex items-center gap-2">
+                            <span id="interior-counter" class="bg-black/75 backdrop-blur-md border border-white/20 text-white font-mono text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-2 shadow-lg">
+                                <i class="fa-solid fa-camera text-amber-400"></i>
+                                <span>Render 01 / 14</span>
+                            </span>
+                        </div>
+
+                        <!-- Top Right Floating Fullscreen Button -->
+                        <div class="absolute top-4 right-4 z-10">
+                            <span class="w-10 h-10 rounded-xl bg-black/75 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:bg-amber-500 group-hover:text-black transition-all shadow-lg">
+                                <i class="fa-solid fa-expand"></i>
+                            </span>
+                        </div>
+
+                        <!-- Left / Right Slide Navigation Buttons -->
+                        <button onclick="event.stopPropagation(); prevProjectImage('interior')" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-2xl bg-black/60 hover:bg-amber-500 text-white hover:text-black border border-white/20 flex items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-110 shadow-xl" title="Previous Render">
+                            <i class="fa-solid fa-chevron-left text-sm"></i>
+                        </button>
+                        <button onclick="event.stopPropagation(); nextProjectImage('interior')" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-2xl bg-black/60 hover:bg-amber-500 text-white hover:text-black border border-white/20 flex items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-110 shadow-xl" title="Next Render">
+                            <i class="fa-solid fa-chevron-right text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 14-Thumbnail Interactive Filmstrip -->
+                <div class="space-y-2.5">
+                    <div class="flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <span class="flex items-center gap-1.5 text-slate-300">
+                            <i class="fa-solid fa-layer-group text-amber-400"></i> لقطات المعرض (انقر على أي صورة للتنقل المباشر):
+                        </span>
+                        <span class="text-[11px] text-amber-400/90 font-mono">14 Renders</span>
+                    </div>
+
+                    <div class="grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-14 gap-2">
+                        <div onclick="selectProjectImage('interior', 0)" class="interior-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-amber-500 shadow-md shadow-amber-500/30 opacity-100 group transition-all">
+                            <img src="images/interior-1.png" alt="Interior 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#01</span>
+                        </div>
+                        <div onclick="selectProjectImage('interior', 1)" class="interior-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/interior-2.png" alt="Interior 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#02</span>
+                        </div>
+                        <div onclick="selectProjectImage('interior', 2)" class="interior-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/interior-3.png" alt="Interior 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#03</span>
+                        </div>
+                        <div onclick="selectProjectImage('interior', 3)" class="interior-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/interior-4.png" alt="Interior 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#04</span>
+                        </div>
+                        <div onclick="selectProjectImage('interior', 4)" class="interior-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/interior-5.png" alt="Interior 5" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#05</span>
+                        </div>
+                        <div onclick="selectProjectImage('interior', 5)" class="interior-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/interior-6.png" alt="Interior 6" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#06</span>
+                        </div>
+                        <div onclick="selectProjectImage('interior', 6)" class="interior-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/interior-7.png" alt="Interior 7" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#07</span>
+                        </div>
+                        <div onclick="selectProjectImage('interior', 8)" class="interior-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/interior-8.png" alt="Interior 8" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#08</span>
+                        </div>
+                        <div onclick="selectProjectImage('interior', 8)" class="interior-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/interior-9.png" alt="Interior 9" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#09</span>
+                        </div>
+                        <div onclick="selectProjectImage('interior', 9)" class="interior-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/interior-10.png" alt="Interior 10" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#10</span>
+                        </div>
+                        <div onclick="selectProjectImage('interior', 10)" class="interior-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/interior-11.png" alt="Interior 11" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#11</span>
+                        </div>
+                        <div onclick="selectProjectImage('interior', 11)" class="interior-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/interior-12.png" alt="Interior 12" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#12</span>
+                        </div>
+                        <div onclick="selectProjectImage('interior', 12)" class="interior-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/interior-13.png" alt="Interior 13" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#13</span>
+                        </div>
+                        <div onclick="selectProjectImage('interior', 13)" class="interior-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/interior-14.png" alt="Interior 14" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#14</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description & Stack -->
+                <div class="pt-4 border-t border-slate-800/80 grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+                    <div class="lg:col-span-8">
+                        <p class="text-xs text-slate-300 leading-relaxed font-arabic">
+                            تصميم وتفصيل ديكورات داخلية سكنية متكاملة بأسلوب معاصر فاخر؛ يشمل صالات الاستقبال الرئيسية، تصاميم الأسقف المستعارة والمستويات العضوية (Organic Parametric Ceilings)، توزيع الإضاءة الخطية والمخفية (LED Profiles)، تفاصيل تجاليد الجدران والرخام الطبيعي، ومخططات النجارة التنفيذية (Joinery Millwork).
+                        </p>
+                    </div>
+                    <div class="lg:col-span-4 flex flex-wrap lg:justify-end items-center gap-1.5 text-[10px] font-mono">
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">AutoCAD</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">3ds Max</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">V-Ray</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">SketchUp</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECT GALLERY 3: COMMERCIAL & OFFICES -->
+            <div class="project-gallery-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/40 transition-all p-5 sm:p-7 space-y-6">
+                <!-- Header -->
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-800/80 pb-5">
+                    <div class="space-y-1.5">
+                        <div class="flex flex-wrap items-center gap-2.5">
+                            <span class="badge-amber text-amber-300 text-xs font-mono font-bold px-3 py-1 rounded-lg flex items-center gap-1.5">
+                                <i class="fa-solid fa-building text-[11px]"></i> Commercial & Corporate Offices
+                            </span>
+                            <span class="bg-slate-900 border border-slate-800 text-slate-300 text-xs font-mono px-3 py-1 rounded-lg">
+                                <i class="fa-solid fa-images text-amber-400 mr-1"></i> 14 High-Res Renders
+                            </span>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-black text-white uppercase tracking-tight">
+                            Commercial Complexes & <span class="gold-gradient-text">Executive Offices</span>
+                        </h3>
+                        <p class="text-xs text-amber-400/90 font-arabic font-semibold">
+                            مشروع المجمعات التجارية، ممرات التسوق المفتوحة، والمساحات الإدارية التنفيذية
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-3 shrink-0">
+                        <button onclick="openProjectLightbox('office', 0)" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-all shadow-lg shadow-amber-500/20">
+                            <i class="fa-solid fa-expand"></i>
+                            <span>عرض المعرض بالكامل (14 لقطة)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Viewer -->
+                <div class="relative w-full rounded-2xl overflow-hidden bg-slate-950 border border-slate-800/80 group">
+                    <div class="relative w-full aspect-[16/9] sm:aspect-[21/9] lg:aspect-[2.3/1] overflow-hidden cursor-pointer" onclick="openProjectLightboxCurrent('office')">
+                        <img id="office-main-img" src="images/office-1.png" alt="Commercial Spaces and Offices Render" class="w-full h-full object-cover object-center group-hover:scale-[1.015] transition-transform duration-700" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/20 pointer-events-none"></div>
+
+                        <!-- Top Left Floating Badge -->
+                        <div class="absolute top-4 left-4 z-10 flex items-center gap-2">
+                            <span id="office-counter" class="bg-black/75 backdrop-blur-md border border-white/20 text-white font-mono text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-2 shadow-lg">
+                                <i class="fa-solid fa-camera text-amber-400"></i>
+                                <span>Render 01 / 14</span>
+                            </span>
+                        </div>
+
+                        <!-- Top Right Floating Fullscreen Button -->
+                        <div class="absolute top-4 right-4 z-10">
+                            <span class="w-10 h-10 rounded-xl bg-black/75 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:bg-amber-500 group-hover:text-black transition-all shadow-lg">
+                                <i class="fa-solid fa-expand"></i>
+                            </span>
+                        </div>
+
+                        <!-- Left / Right Slide Navigation Buttons -->
+                        <button onclick="event.stopPropagation(); prevProjectImage('office')" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-2xl bg-black/60 hover:bg-amber-500 text-white hover:text-black border border-white/20 flex items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-110 shadow-xl" title="Previous Render">
+                            <i class="fa-solid fa-chevron-left text-sm"></i>
+                        </button>
+                        <button onclick="event.stopPropagation(); nextProjectImage('office')" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-2xl bg-black/60 hover:bg-amber-500 text-white hover:text-black border border-white/20 flex items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-110 shadow-xl" title="Next Render">
+                            <i class="fa-solid fa-chevron-right text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 14-Thumbnail Interactive Filmstrip -->
+                <div class="space-y-2.5">
+                    <div class="flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <span class="flex items-center gap-1.5 text-slate-300">
+                            <i class="fa-solid fa-layer-group text-amber-400"></i> لقطات المعرض (انقر على أي صورة للتنقل المباشر):
+                        </span>
+                        <span class="text-[11px] text-amber-400/90 font-mono">14 Renders</span>
+                    </div>
+
+                    <div class="grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-14 gap-2">
+                        <div onclick="selectProjectImage('office', 0)" class="office-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-amber-500 shadow-md shadow-amber-500/30 opacity-100 group transition-all">
+                            <img src="images/office-1.png" alt="Office 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#01</span>
+                        </div>
+                        <div onclick="selectProjectImage('office', 1)" class="office-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/office-2.png" alt="Office 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#02</span>
+                        </div>
+                        <div onclick="selectProjectImage('office', 2)" class="office-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/office-3.png" alt="Office 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#03</span>
+                        </div>
+                        <div onclick="selectProjectImage('office', 3)" class="office-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/office-4.png" alt="Office 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#04</span>
+                        </div>
+                        <div onclick="selectProjectImage('office', 4)" class="office-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/office-5.png" alt="Office 5" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#05</span>
+                        </div>
+                        <div onclick="selectProjectImage('office', 5)" class="office-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/office-6.png" alt="Office 6" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#06</span>
+                        </div>
+                        <div onclick="selectProjectImage('office', 6)" class="office-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/office-7.png" alt="Office 7" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#07</span>
+                        </div>
+                        <div onclick="selectProjectImage('office', 7)" class="office-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/office-8.png" alt="Office 8" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#08</span>
+                        </div>
+                        <div onclick="selectProjectImage('office', 8)" class="office-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/office-9.png" alt="Office 9" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#09</span>
+                        </div>
+                        <div onclick="selectProjectImage('office', 9)" class="office-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/office-10.png" alt="Office 10" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#10</span>
+                        </div>
+                        <div onclick="selectProjectImage('office', 10)" class="office-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/office-11.png" alt="Office 11" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#11</span>
+                        </div>
+                        <div onclick="selectProjectImage('office', 11)" class="office-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/office-12.png" alt="Office 12" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#12</span>
+                        </div>
+                        <div onclick="selectProjectImage('office', 12)" class="office-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/office-13.png" alt="Office 13" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#13</span>
+                        </div>
+                        <div onclick="selectProjectImage('office', 13)" class="office-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all">
+                            <img src="images/office-14.png" alt="Office 14" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                            <span class="absolute bottom-1 right-1 text-[8px] font-mono bg-black/80 px-1 rounded text-white">#14</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description & Stack -->
+                <div class="pt-4 border-t border-slate-800/80 grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+                    <div class="lg:col-span-8">
+                        <p class="text-xs text-slate-300 leading-relaxed font-arabic">
+                            تخطيط وتصميم مجمعات تجارية وممرات تسوق خارجية وتصميم بيئات عمل مكتبية حديثة وقاعات اجتماعات تنفيذية؛ يركز على مسارات الحركة وانسيابية الفراغات، كاسرات الشمس الخشبية (Wooden Louvers)، شرفات وتراسات المطاعم المفتوحة، والمخططات التنفيذية للمحلات والمكاتب.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-4 flex flex-wrap lg:justify-end items-center gap-1.5 text-[10px] font-mono">
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">AutoCAD</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">3ds Max</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">V-Ray</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300">Space Planning</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CINEMATIC PROJECT VIDEOS & MOTION REELS SECTION -->
+        <div id="videos-section" class="mt-16 pt-10 border-t border-slate-800/80 space-y-8">
+            
+            <!-- Section Header -->
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono mb-2">
+                        <i class="fa-solid fa-film"></i> 8 Cinematic Motion Productions
+                    </div>
+                    <h3 class="text-2xl sm:text-4xl font-black text-white uppercase tracking-tight">
+                        CINEMATIC <span class="gold-gradient-text">PROJECT VIDEOS</span> & MOTION REELS
+                    </h3>
+                    <p class="text-slate-400 text-xs sm:text-sm mt-1 max-w-2xl leading-relaxed">
+                        جولات معمارية حركية وفيديوهات ثلاثية الأبعاد تستعرض دقة التنفيذ والمحاكاة الواقعية، فلسفة تطوير المفاهيم، والتحف الفنية المعدنية والتطبيقات التفاعلية.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
+                    <span class="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-amber-400 flex items-center gap-2 shadow-lg">
+                        <i class="fa-solid fa-circle-play text-sm"></i>
+                        <span>8 High-Definition Productions</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Videos Responsive Grid (2 columns on desktop) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- VIDEO 1: Modern Residential Palace (1,000 m²) -->
+                <div class="video-project-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all p-5 flex flex-col justify-between group">
+                    <div class="relative w-full aspect-[16/9] bg-slate-950 rounded-2xl overflow-hidden border border-slate-800/80 mb-4">
+                        <video id="vid-0" src="videos/Design of a modern residential palace with an area of 1,000 square meters for one of our clients.mp4" class="w-full h-full object-cover" preload="metadata" playsinline controls></video>
+                        <div class="absolute top-3 left-3 pointer-events-none flex items-center gap-2">
+                            <span class="badge-amber text-amber-300 text-[10px] font-mono px-2.5 py-1 rounded-lg shadow-lg">
+                                <i class="fa-solid fa-hotel text-xs mr-1"></i> Palace Tour
+                            </span>
+                            <span class="bg-black/75 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] px-2 py-1 rounded-lg">
+                                <i class="fa-solid fa-clock text-amber-400 mr-1"></i> 00:23
+                            </span>
+                        </div>
+                        <button onclick="openVideoLightbox(0)" class="absolute top-3 right-3 w-9 h-9 rounded-xl bg-black/75 backdrop-blur-md border border-white/20 text-white hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all shadow-lg" title="Fullscreen Lightbox">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-3 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors">
+                                Modern Residential Palace (1,000 m²) Architectural Tour
+                            </h4>
+                            <p class="text-xs font-semibold text-amber-400 font-arabic mt-0.5 mb-2">
+                                جولة معمارية في قصر سكني مودرن بمساحة 1,000 متر مربع
+                            </p>
+                            <p class="text-xs text-slate-300 leading-relaxed font-arabic">
+                                جولة سينمائية متكاملة تستعرض الكتل المعمارية الخارجية، الواجهات الحجرية المودرن، المسبح الترفيهي واللاندسكيب، والمحاكاة الواقعية لحركة الإضاءة وأشعة الشمس للفيلا الفاخرة.
+                            </p>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+                            <div class="flex flex-wrap items-center gap-1.5 text-[10px] font-mono text-slate-400">
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">AutoCAD</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">3ds Max</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Lumion</span>
+                            </div>
+                            <button onclick="openVideoLightbox(0)" class="text-amber-400 hover:text-amber-300 text-xs font-mono flex items-center gap-1.5 shrink-0">
+                                <span>Lightbox HD</span> <i class="fa-solid fa-circle-play text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIDEO 2: Visual Value Creation & Concept Philosophy -->
+                <div class="video-project-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all p-5 flex flex-col justify-between group">
+                    <div class="relative w-full aspect-[16/9] bg-slate-950 rounded-2xl overflow-hidden border border-slate-800/80 mb-4">
+                        <video id="vid-1" src="videos/نحن لا نملأ المساحات ….نحن نصنع قيمة بصرية .✔️Original design _ concept development✔️15+ years m.mp4" class="w-full h-full object-cover" preload="metadata" playsinline controls></video>
+                        <div class="absolute top-3 left-3 pointer-events-none flex items-center gap-2">
+                            <span class="badge-amber text-amber-300 text-[10px] font-mono px-2.5 py-1 rounded-lg shadow-lg">
+                                <i class="fa-solid fa-compass-drafting text-xs mr-1"></i> Concept Design
+                            </span>
+                            <span class="bg-black/75 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] px-2 py-1 rounded-lg">
+                                <i class="fa-solid fa-clock text-amber-400 mr-1"></i> 00:29
+                            </span>
+                        </div>
+                        <button onclick="openVideoLightbox(1)" class="absolute top-3 right-3 w-9 h-9 rounded-xl bg-black/75 backdrop-blur-md border border-white/20 text-white hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all shadow-lg" title="Fullscreen Lightbox">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-3 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors">
+                                Visual Value Creation & Original Concept Development
+                            </h4>
+                            <p class="text-xs font-semibold text-amber-400 font-arabic mt-0.5 mb-2">
+                                نحن لا نملأ المساحات.. نحن نصنع قيمة بصرية وتطويراً للمفاهيم
+                            </p>
+                            <p class="text-xs text-slate-300 leading-relaxed font-arabic">
+                                فيديو يجسد فلسفة التصميم المعماري والداخلي الأصيل؛ تحويل المساحات الصامتة إلى بيئات ذات قيمة بصرية ووظيفية متوازنة تجمع بين الجمالية الهندسية وروح المكان.
+                            </p>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+                            <div class="flex flex-wrap items-center gap-1.5 text-[10px] font-mono text-slate-400">
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Concept</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Interior</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Visual Value</span>
+                            </div>
+                            <button onclick="openVideoLightbox(1)" class="text-amber-400 hover:text-amber-300 text-xs font-mono flex items-center gap-1.5 shrink-0">
+                                <span>Lightbox HD</span> <i class="fa-solid fa-circle-play text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIDEO 3: The Panther sculpture stainlessSteel design -->
+                <div class="video-project-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all p-5 flex flex-col justify-between group">
+                    <div class="relative w-full aspect-[16/9] bg-slate-950 rounded-2xl overflow-hidden border border-slate-800/80 mb-4">
+                        <video id="vid-2" src="videos/The Panther sculpture stainlessSteel design, adds elegance to any space.Perfect for homes or vil.mp4" class="w-full h-full object-cover" preload="metadata" playsinline controls></video>
+                        <div class="absolute top-3 left-3 pointer-events-none flex items-center gap-2">
+                            <span class="badge-amber text-amber-300 text-[10px] font-mono px-2.5 py-1 rounded-lg shadow-lg">
+                                <i class="fa-solid fa-cubes text-xs mr-1"></i> Metal Art
+                            </span>
+                            <span class="bg-black/75 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] px-2 py-1 rounded-lg">
+                                <i class="fa-solid fa-clock text-amber-400 mr-1"></i> 00:24
+                            </span>
+                        </div>
+                        <button onclick="openVideoLightbox(2)" class="absolute top-3 right-3 w-9 h-9 rounded-xl bg-black/75 backdrop-blur-md border border-white/20 text-white hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all shadow-lg" title="Fullscreen Lightbox">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-3 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors">
+                                The Panther Sculpture — Stainless Steel Luxury Design
+                            </h4>
+                            <p class="text-xs font-semibold text-amber-400 font-arabic mt-0.5 mb-2">
+                                تصميم مجسم الفهد الفني من الستانلس ستيل المصقول
+                            </p>
+                            <p class="text-xs text-slate-300 leading-relaxed font-arabic">
+                                تصميم ونمذجة ثلاثية الأبعاد لمنحوتة الفهد الهندسي من معدن الستانلس ستيل العاكس؛ قطعة فنية فاخرة لإضفاء الفخامة والتميز على بهو الفلل والقصور الحديثة.
+                            </p>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+                            <div class="flex flex-wrap items-center gap-1.5 text-[10px] font-mono text-slate-400">
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Stainless Steel</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">3D Sculpt</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Luxury Decor</span>
+                            </div>
+                            <button onclick="openVideoLightbox(2)" class="text-amber-400 hover:text-amber-300 text-xs font-mono flex items-center gap-1.5 shrink-0">
+                                <span>Lightbox HD</span> <i class="fa-solid fa-circle-play text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIDEO 4: Dreamina Talking Avatar AI -->
+                <div class="video-project-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all p-5 flex flex-col justify-between group">
+                    <div class="relative w-full aspect-[16/9] bg-slate-950 rounded-2xl overflow-hidden border border-slate-800/80 mb-4">
+                        <video id="vid-3" src="videos/Dreamina- Create realistic talking avatars with AI avatar generator.mp4" class="w-full h-full object-cover" preload="metadata" playsinline controls></video>
+                        <div class="absolute top-3 left-3 pointer-events-none flex items-center gap-2">
+                            <span class="badge-amber text-amber-300 text-[10px] font-mono px-2.5 py-1 rounded-lg shadow-lg">
+                                <i class="fa-solid fa-robot text-xs mr-1"></i> AI Avatar
+                            </span>
+                            <span class="bg-black/75 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] px-2 py-1 rounded-lg">
+                                <i class="fa-solid fa-clock text-amber-400 mr-1"></i> 00:20
+                            </span>
+                        </div>
+                        <button onclick="openVideoLightbox(3)" class="absolute top-3 right-3 w-9 h-9 rounded-xl bg-black/75 backdrop-blur-md border border-white/20 text-white hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all shadow-lg" title="Fullscreen Lightbox">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-3 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors">
+                                AI Realistic Talking Avatars & Digital Presentation
+                            </h4>
+                            <p class="text-xs font-semibold text-amber-400 font-arabic mt-0.5 mb-2">
+                                توليد الأفاتار التفاعلي الناطق وتطبيقات الذكاء الاصطناعي
+                            </p>
+                            <p class="text-xs text-slate-300 leading-relaxed font-arabic">
+                                توظيف نماذج الذكاء الاصطناعي التوليدي لإنشاء أفاتار ناطق واقعي ومحتوى تفاعلي رقمي يدعم عروض المشاريع الهندسية وتقديم التصاميم بأسلوب رقمي معاصر.
+                            </p>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+                            <div class="flex flex-wrap items-center gap-1.5 text-[10px] font-mono text-slate-400">
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Generative AI</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Digital Avatar</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Media</span>
+                            </div>
+                            <button onclick="openVideoLightbox(3)" class="text-amber-400 hover:text-amber-300 text-xs font-mono flex items-center gap-1.5 shrink-0">
+                                <span>Lightbox HD</span> <i class="fa-solid fa-circle-play text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIDEO 5: video1.mp4 -->
+                <div class="video-project-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all p-5 flex flex-col justify-between group">
+                    <div class="relative w-full aspect-[16/9] bg-slate-950 rounded-2xl overflow-hidden border border-slate-800/80 mb-4">
+                        <video id="vid-4" src="videos/video1.mp4" class="w-full h-full object-cover" preload="metadata" playsinline controls></video>
+                        <div class="absolute top-3 left-3 pointer-events-none flex items-center gap-2">
+                            <span class="badge-amber text-amber-300 text-[10px] font-mono px-2.5 py-1 rounded-lg shadow-lg">
+                                <i class="fa-solid fa-video text-xs mr-1"></i> Motion Reel I
+                            </span>
+                            <span class="bg-black/75 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] px-2 py-1 rounded-lg">
+                                <i class="fa-solid fa-clock text-amber-400 mr-1"></i> 00:14
+                            </span>
+                        </div>
+                        <button onclick="openVideoLightbox(4)" class="absolute top-3 right-3 w-9 h-9 rounded-xl bg-black/75 backdrop-blur-md border border-white/20 text-white hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all shadow-lg" title="Fullscreen Lightbox">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-3 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors">
+                                Architectural 3D Motion Reel & Spatial Animation I
+                            </h4>
+                            <p class="text-xs font-semibold text-amber-400 font-arabic mt-0.5 mb-2">
+                                جولة سينمائية ثلاثية الأبعاد للمساحات المعمارية (الجزء الأول)
+                            </p>
+                            <p class="text-xs text-slate-300 leading-relaxed font-arabic">
+                                استعراض حركي ثلاثي الأبعاد عالي الجودة يُظهر تفاصيل توزيع الإضاءة، وتفاعل الخامات والمواد المعمارية، وانسيابية الحركة داخل الفراغات التصميمية.
+                            </p>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+                            <div class="flex flex-wrap items-center gap-1.5 text-[10px] font-mono text-slate-400">
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">3ds Max</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">V-Ray</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Motion Reel</span>
+                            </div>
+                            <button onclick="openVideoLightbox(4)" class="text-amber-400 hover:text-amber-300 text-xs font-mono flex items-center gap-1.5 shrink-0">
+                                <span>Lightbox HD</span> <i class="fa-solid fa-circle-play text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIDEO 6: video2.mp4 -->
+                <div class="video-project-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all p-5 flex flex-col justify-between group">
+                    <div class="relative w-full aspect-[16/9] bg-slate-950 rounded-2xl overflow-hidden border border-slate-800/80 mb-4">
+                        <video id="vid-5" src="videos/video2.mp4" class="w-full h-full object-cover" preload="metadata" playsinline controls></video>
+                        <div class="absolute top-3 left-3 pointer-events-none flex items-center gap-2">
+                            <span class="badge-amber text-amber-300 text-[10px] font-mono px-2.5 py-1 rounded-lg shadow-lg">
+                                <i class="fa-solid fa-video text-xs mr-1"></i> Detail Reel II
+                            </span>
+                            <span class="bg-black/75 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] px-2 py-1 rounded-lg">
+                                <i class="fa-solid fa-clock text-amber-400 mr-1"></i> 00:07
+                            </span>
+                        </div>
+                        <button onclick="openVideoLightbox(5)" class="absolute top-3 right-3 w-9 h-9 rounded-xl bg-black/75 backdrop-blur-md border border-white/20 text-white hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all shadow-lg" title="Fullscreen Lightbox">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-3 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors">
+                                Interior Architectural Detail & Material Lighting II
+                            </h4>
+                            <p class="text-xs font-semibold text-amber-400 font-arabic mt-0.5 mb-2">
+                                استعراض تفاصيل الإضاءة والتشطيبات الداخلية (الجزء الثاني)
+                            </p>
+                            <p class="text-xs text-slate-300 leading-relaxed font-arabic">
+                                لقطة حركية دقيقة تركز على تدرجات الإضاءة المخفية، انعكاسات الأسطح الرخامية والمعدنية، وجودة الإخراج الواقعي في التصميم الداخلي السكني.
+                            </p>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+                            <div class="flex flex-wrap items-center gap-1.5 text-[10px] font-mono text-slate-400">
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Interior Motion</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Lighting</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Finishes</span>
+                            </div>
+                            <button onclick="openVideoLightbox(5)" class="text-amber-400 hover:text-amber-300 text-xs font-mono flex items-center gap-1.5 shrink-0">
+                                <span>Lightbox HD</span> <i class="fa-solid fa-circle-play text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIDEO 7: video3.mp4 -->
+                <div class="video-project-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all p-5 flex flex-col justify-between group">
+                    <div class="relative w-full aspect-[16/9] bg-slate-950 rounded-2xl overflow-hidden border border-slate-800/80 mb-4">
+                        <video id="vid-6" src="videos/video3.mp4" class="w-full h-full object-cover" preload="metadata" playsinline controls></video>
+                        <div class="absolute top-3 left-3 pointer-events-none flex items-center gap-2">
+                            <span class="badge-amber text-amber-300 text-[10px] font-mono px-2.5 py-1 rounded-lg shadow-lg">
+                                <i class="fa-solid fa-video text-xs mr-1"></i> Walkthrough III
+                            </span>
+                            <span class="bg-black/75 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] px-2 py-1 rounded-lg">
+                                <i class="fa-solid fa-clock text-amber-400 mr-1"></i> 00:19
+                            </span>
+                        </div>
+                        <button onclick="openVideoLightbox(6)" class="absolute top-3 right-3 w-9 h-9 rounded-xl bg-black/75 backdrop-blur-md border border-white/20 text-white hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all shadow-lg" title="Fullscreen Lightbox">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-3 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors">
+                                Spatial Walkthrough & Layout Experience III
+                            </h4>
+                            <p class="text-xs font-semibold text-amber-400 font-arabic mt-0.5 mb-2">
+                                محاكاة حركة الفراغات والتصميم الداخلي المودرن (الجزء الثالث)
+                            </p>
+                            <p class="text-xs text-slate-300 leading-relaxed font-arabic">
+                                فيديو محاكاة واقعية لاستكشاف الفراغات وتكامل الأثاث المودرن مع العناصر الإنشائية والأسقف المستعارة وفتحات الإضاءة الطبيعية.
+                            </p>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+                            <div class="flex flex-wrap items-center gap-1.5 text-[10px] font-mono text-slate-400">
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Space Planning</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Modern Layout</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Walkthrough</span>
+                            </div>
+                            <button onclick="openVideoLightbox(6)" class="text-amber-400 hover:text-amber-300 text-xs font-mono flex items-center gap-1.5 shrink-0">
+                                <span>Lightbox HD</span> <i class="fa-solid fa-circle-play text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIDEO 8: video4.mp4 -->
+                <div class="video-project-card glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all p-5 flex flex-col justify-between group">
+                    <div class="relative w-full aspect-[16/9] bg-slate-950 rounded-2xl overflow-hidden border border-slate-800/80 mb-4">
+                        <video id="vid-7" src="videos/video4.mp4" class="w-full h-full object-cover" preload="metadata" playsinline controls></video>
+                        <div class="absolute top-3 left-3 pointer-events-none flex items-center gap-2">
+                            <span class="badge-amber text-amber-300 text-[10px] font-mono px-2.5 py-1 rounded-lg shadow-lg">
+                                <i class="fa-solid fa-video text-xs mr-1"></i> Execution Reel IV
+                            </span>
+                            <span class="bg-black/75 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] px-2 py-1 rounded-lg">
+                                <i class="fa-solid fa-clock text-amber-400 mr-1"></i> 00:21
+                            </span>
+                        </div>
+                        <button onclick="openVideoLightbox(7)" class="absolute top-3 right-3 w-9 h-9 rounded-xl bg-black/75 backdrop-blur-md border border-white/20 text-white hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all shadow-lg" title="Fullscreen Lightbox">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-3 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors">
+                                Project Execution & Architectural Animation IV
+                            </h4>
+                            <p class="text-xs font-semibold text-amber-400 font-arabic mt-0.5 mb-2">
+                                توثيق التنفيذ والمحاكاة الحركية المتكاملة (الجزء الرابع)
+                            </p>
+                            <p class="text-xs text-slate-300 leading-relaxed font-arabic">
+                                استعراض معماري شامل يربط بين المخططات الهندسية والمحاكاة الحركية للتحقق من نسب الفراغات ومطابقة التنفيذ مع رؤية التصميم الأصلية.
+                            </p>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+                            <div class="flex flex-wrap items-center gap-1.5 text-[10px] font-mono text-slate-400">
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Site Execution</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Verification</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800">Animation</span>
+                            </div>
+                            <button onclick="openVideoLightbox(7)" class="text-amber-400 hover:text-amber-300 text-xs font-mono flex items-center gap-1.5 shrink-0">
+                                <span>Lightbox HD</span> <i class="fa-solid fa-circle-play text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    <!-- Unified Footer -->
+    <footer class="mt-12 pt-6 border-t border-slate-800/80 text-center text-xs text-slate-400 flex flex-col sm:flex-row justify-between items-center gap-3 max-w-7xl mx-auto px-4">
+        <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            <span>Abdulrahman Khateeb • Technical Design & Systems Programming Portfolio</span>
+        </div>
+        <div class="font-mono text-[11px] text-slate-400">
+            Crafted for High-Impact Architectural & Engineering Teams
+        </div>
+    </footer>
+
+    <script>
+        // Clipboard Helper for safe copy inside web sandboxes
+        function copyToClipboard(text, customMsg) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast(customMsg || 'Copied to clipboard!');
+                }).catch(() => {
+                    fallbackCopy(text, customMsg);
+                });
+            } else {
+                fallbackCopy(text, customMsg);
+            }
         }
 
-        function closeModal() {
-            const modal = document.getElementById('galleryModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Enable scrolling
+        function fallbackCopy(text, customMsg) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast(customMsg || 'Copied to clipboard!');
+            } catch (err) {
+                showToast('Failed to copy text');
+            }
+            document.body.removeChild(textArea);
         }
 
-        // Close modal if clicked outside image area
-        document.getElementById('galleryModal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
+        // Notification Toast Helper
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = msg;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
 
-        // Simple Counter Animation
-        const counters = document.querySelectorAll('.counter');
-        const animateCounters = () => {
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                const increment = Math.ceil(target / 100);
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3200);
+        }
 
-                if(count < target) {
-                    counter.innerText = count + increment;
-                    setTimeout(animateCounters, 20);
+        // CV Filter Functionality for Recruiter Focus View
+        function filterDiscipline(type) {
+            const cadCards = document.querySelectorAll('.cad-item');
+            const systemsCards = document.querySelectorAll('.systems-item');
+            
+            const btnAll = document.getElementById('btn-filter-all');
+            const btnCad = document.getElementById('btn-filter-cad');
+            const btnSystems = document.getElementById('btn-filter-systems');
+
+            if (type === 'all') {
+                if(btnAll) btnAll.className = "px-3 py-1.5 rounded-lg font-semibold bg-amber-500 text-slate-950 transition-all";
+                cadCards.forEach(c => c.style.display = 'block');
+                systemsCards.forEach(c => c.style.display = 'block');
+            } else if (type === 'cad') {
+                if(btnCad) btnCad.className = "px-3 py-1.5 rounded-lg font-semibold bg-amber-500 text-slate-950 transition-all";
+                cadCards.forEach(c => c.style.display = 'block');
+                systemsCards.forEach(c => c.style.display = 'none');
+            } else if (type === 'systems') {
+                if(btnSystems) btnSystems.className = "px-3 py-1.5 rounded-lg font-semibold bg-sky-500 text-slate-950 transition-all";
+                cadCards.forEach(c => c.style.display = 'none');
+                systemsCards.forEach(c => c.style.display = 'block');
+            }
+        }
+
+        // MASTER PROJECT GALLERIES DATA & LOGIC
+        const projectGalleries = {
+            villa: {
+                title: "Modern Luxury Villa & Palace Architecture",
+                category: "Villa Architecture",
+                description: "دراسة معمارية شاملة لتصميم وتنفيذ فيلا وقصر سكني معاصر؛ تشمل توزيع الكتل الفراغية، واجهات حجر الترافرتين (Travertine Cladding)، الزجاج البانورامي المزدوج (Double-Height Glazing)، كاسرات الشمس الخشبية، والإضاءة المعمارية مع مخططات التنفيذ والتنسيق الحدائقي.",
+                images: [
+                    "images/villa-1.png", "images/villa-2.png", "images/villa-3.png", "images/villa-4.png",
+                    "images/villa-5.png", "images/villa-6.png", "images/villa-7.png", "images/villa-8.png",
+                    "images/villa-9.png", "images/villa-10.png", "images/villa11.png", "images/villa12.png",
+                    "images/villa-13.png", "images/villa-14.png"
+                ],
+                currentIndex: 0
+            },
+            interior: {
+                title: "Luxury Interior Architecture & Living Spaces",
+                category: "Interior Architecture",
+                description: "تصميم وتفصيل ديكورات داخلية سكنية متكاملة بأسلوب معاصر فاخر؛ يشمل صالات الاستقبال الرئيسية، تصاميم الأسقف المستعارة والمستويات العضوية (Organic Parametric Ceilings)، توزيع الإضاءة الخطية والمخفية (LED Profiles)، تفاصيل تجاليد الجدران والرخام الطبيعي، ومخططات النجارة التنفيذية (Joinery Millwork).",
+                images: [
+                    "images/interior-1.png", "images/interior-2.png", "images/interior-3.png", "images/interior-4.png",
+                    "images/interior-5.png", "images/interior-6.png", "images/interior-7.png", "images/interior-8.png",
+                    "images/interior-9.png", "images/interior-10.png", "images/interior-11.png", "images/interior-12.png",
+                    "images/interior-13.png", "images/interior-14.png"
+                ],
+                currentIndex: 0
+            },
+            office: {
+                title: "Commercial Complexes & Executive Offices",
+                category: "Commercial & Corporate Offices",
+                description: "تخطيط وتصميم مجمعات تجارية وممرات تسوق خارجية وتصميم بيئات عمل مكتبية حديثة وقاعات اجتماعات تنفيذية؛ يركز على مسارات الحركة وانسيابية الفراغات، كاسرات الشمس الخشبية (Wooden Louvers)، شرفات وتراسات المطاعم المفتوحة، والمخططات التنفيذية للمحلات والمكاتب.",
+                images: [
+                    "images/office-1.png", "images/office-2.png", "images/office-3.png", "images/office-4.png",
+                    "images/office-5.png", "images/office-6.png", "images/office-7.png", "images/office-8.png",
+                    "images/office-9.png", "images/office-10.png", "images/office-11.png", "images/office-12.png",
+                    "images/office-13.png", "images/office-14.png"
+                ],
+                currentIndex: 0
+            }
+        };
+
+        let activeLightboxProject = null;
+        let activeLightboxIndex = 0;
+
+        // Switch active render in the card's hero viewer
+        function selectProjectImage(projectKey, index) {
+            const proj = projectGalleries[projectKey];
+            if (!proj || index < 0 || index >= proj.images.length) return;
+            proj.currentIndex = index;
+
+            // Update main hero image
+            const mainImg = document.getElementById(`${projectKey}-main-img`);
+            if (mainImg) {
+                mainImg.src = proj.images[index];
+            }
+
+            // Update counter badge
+            const counterEl = document.getElementById(`${projectKey}-counter`);
+            if (counterEl) {
+                const num = String(index + 1).padStart(2, '0');
+                const total = String(proj.images.length).padStart(2, '0');
+                counterEl.innerHTML = `<i class="fa-solid fa-camera text-amber-400"></i><span>Render ${num} / ${total}</span>`;
+            }
+
+            // Highlight selected thumbnail
+            const thumbs = document.querySelectorAll(`.${projectKey}-thumb`);
+            thumbs.forEach((th, i) => {
+                if (i === index) {
+                    th.className = `${projectKey}-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-amber-500 shadow-md shadow-amber-500/30 opacity-100 group transition-all`;
                 } else {
-                    counter.innerText = target;
+                    th.className = `${projectKey}-thumb relative aspect-[16/10] rounded-xl overflow-hidden cursor-pointer border-2 border-slate-800/80 opacity-60 hover:opacity-100 hover:border-slate-600 group transition-all`;
                 }
             });
         }
 
-        let observer = new IntersectionObserver((entries) => {
-            if(entries[0].isIntersecting) {
-                animateCounters();
-                observer.disconnect();
+        // Quick next/prev image within project card
+        function nextProjectImage(projectKey) {
+            const proj = projectGalleries[projectKey];
+            if (!proj) return;
+            const nextIdx = (proj.currentIndex + 1) % proj.images.length;
+            selectProjectImage(projectKey, nextIdx);
+        }
+
+        function prevProjectImage(projectKey) {
+            const proj = projectGalleries[projectKey];
+            if (!proj) return;
+            const prevIdx = (proj.currentIndex - 1 + proj.images.length) % proj.images.length;
+            selectProjectImage(projectKey, prevIdx);
+        }
+
+        // Open Lightbox on current displayed project image
+        function openProjectLightboxCurrent(projectKey) {
+            const proj = projectGalleries[projectKey];
+            if (!proj) return;
+            openProjectLightbox(projectKey, proj.currentIndex);
+        }
+
+        // Open Lightbox at specific project image index
+        function openProjectLightbox(projectKey, index) {
+            const proj = projectGalleries[projectKey];
+            if (!proj) return;
+            activeLightboxProject = projectKey;
+            activeLightboxIndex = index;
+            renderLightboxView();
+            document.getElementById('lightbox-modal').classList.remove('hidden');
+        }
+
+        // Render contents of the fullscreen Lightbox modal
+        function renderLightboxView() {
+            if (!activeLightboxProject) return;
+            const proj = projectGalleries[activeLightboxProject];
+            const imgUrl = proj.images[activeLightboxIndex];
+            const total = proj.images.length;
+            const num = String(activeLightboxIndex + 1).padStart(2, '0');
+
+            document.getElementById('lightbox-category-badge').innerText = proj.category;
+            document.getElementById('lightbox-title').innerText = proj.title;
+            document.getElementById('lightbox-counter').innerText = `${num} / ${total}`;
+            document.getElementById('lightbox-description').innerText = proj.description;
+
+            const container = document.getElementById('lightbox-content-container');
+            container.innerHTML = `<img src="${imgUrl}" alt="${proj.title}" class="max-h-[72vh] w-auto max-w-full object-contain rounded-2xl border border-slate-700 shadow-2xl transition-all duration-300">`;
+
+            // Render mini thumbnails track inside the Lightbox
+            const track = document.getElementById('lightbox-thumbs-track');
+            if (track) {
+                track.innerHTML = proj.images.map((src, idx) => {
+                    const isActive = idx === activeLightboxIndex;
+                    const borderCls = isActive ? 'border-amber-500 shadow-lg shadow-amber-500/40 opacity-100 scale-105' : 'border-slate-800 opacity-50 hover:opacity-100';
+                    return `
+                        <button onclick="jumpLightboxIndex(${idx})" class="shrink-0 w-14 h-9 sm:w-16 sm:h-10 rounded-lg overflow-hidden border-2 ${borderCls} transition-all">
+                            <img src="${src}" alt="Thumb ${idx+1}" class="w-full h-full object-cover" loading="lazy">
+                        </button>
+                    `;
+                }).join('');
+            }
+        }
+
+        function jumpLightboxIndex(idx) {
+            activeLightboxIndex = idx;
+            renderLightboxView();
+        }
+
+        function nextLightboxImage() {
+            if (!activeLightboxProject) return;
+            const proj = projectGalleries[activeLightboxProject];
+            activeLightboxIndex = (activeLightboxIndex + 1) % proj.images.length;
+            renderLightboxView();
+        }
+
+        function prevLightboxImage() {
+            if (!activeLightboxProject) return;
+            const proj = projectGalleries[activeLightboxProject];
+            activeLightboxIndex = (activeLightboxIndex - 1 + proj.images.length) % proj.images.length;
+            renderLightboxView();
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            if (modal) modal.classList.add('hidden');
+            const container = document.getElementById('lightbox-content-container');
+            if (container) container.innerHTML = '';
+            activeLightboxProject = null;
+        }
+
+        // Fallback openLightbox for any legacy calls
+        function openLightbox(type, url, title, category, description) {
+            const modal = document.getElementById('lightbox-modal');
+            const container = document.getElementById('lightbox-content-container');
+            const titleEl = document.getElementById('lightbox-title');
+            const badgeEl = document.getElementById('lightbox-category-badge');
+            const descEl = document.getElementById('lightbox-description');
+
+            if (titleEl) titleEl.innerText = title;
+            if (badgeEl) badgeEl.innerText = category;
+            if (descEl) descEl.innerText = description;
+
+            if (type === 'image') {
+                container.innerHTML = `<img src="${url}" alt="${title}" class="max-h-[72vh] w-auto max-w-full object-contain rounded-2xl border border-slate-700 shadow-2xl">`;
+            } else if (type === 'video') {
+                container.innerHTML = `
+                    <video class="max-h-[72vh] w-full rounded-2xl border border-slate-700 shadow-2xl" controls autoplay>
+                        <source src="${url}" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+                `;
+            }
+            modal.classList.remove('hidden');
+        }
+
+        // Close modal on Escape key and navigate with Arrow keys
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('lightbox-modal');
+            if (!modal || modal.classList.contains('hidden')) return;
+
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowRight') {
+                nextLightboxImage();
+            } else if (e.key === 'ArrowLeft') {
+                prevLightboxImage();
             }
         });
-        observer.observe(document.querySelector('.counter'));
     </script>
 </body>
 </html>
