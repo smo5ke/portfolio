@@ -752,6 +752,86 @@
 
         </main>
 
+        <!-- ACADEMIC CERTIFICATES SHOWCASE -->
+        <section class="mt-10 pt-8 border-t border-slate-800/80 space-y-6 relative z-10">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-600/5 border border-amber-500/40 flex items-center justify-center text-amber-400 text-lg shadow-lg shadow-amber-500/10 shrink-0">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-base sm:text-xl font-black text-white uppercase tracking-wide">Verified <span class="gold-gradient-text">Academic Certificates</span></h2>
+                        <p class="text-[11px] text-slate-400 mt-0.5">Official graduation documents — click any certificate for fullscreen view or open the original PDF</p>
+                    </div>
+                </div>
+                <span class="text-[11px] font-mono text-amber-400 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 shrink-0 w-fit">2 official documents • QR-verified</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- CERT 1: AOU Graduation Certificate -->
+                <div class="glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all group flex flex-col">
+                    <div class="p-4 sm:p-5 pb-3 flex flex-wrap items-center gap-2">
+                        <span class="badge-amber text-amber-300 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-lg flex items-center gap-1.5">
+                            <i class="fa-solid fa-building-columns text-[11px]"></i> Arab Open University • Ministry of Education
+                        </span>
+                        <span class="bg-slate-900 border border-slate-800 text-slate-300 text-[10px] font-mono px-2.5 py-1 rounded-lg">29 Sep 2025</span>
+                    </div>
+                    <div class="px-4 sm:px-5">
+                        <div class="relative rounded-2xl overflow-hidden border border-slate-800/80 bg-white cursor-pointer" onclick="openLightbox('image', 'images/cert-aou-graduation.jpg', 'Graduation Certificate — Arab Open University', 'University Certificate', 'Bachelor of Information Technology & Computing — Grade Good, GPA 2.19 of 4.0 — QR-verified with University President signature.')">
+                            <img src="images/cert-aou-graduation.jpg" alt="Graduation Certificate — Arab Open University" class="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                            <span class="absolute top-3 left-3 w-9 h-9 rounded-xl bg-black/75 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:bg-amber-500 group-hover:text-black transition-all shadow-lg">
+                                <i class="fa-solid fa-expand text-xs"></i>
+                            </span>
+                            <span class="absolute bottom-3 left-3 badge-amber text-amber-300 text-[10px] font-bold px-2.5 py-1 rounded-lg shadow-lg">Bachelor • Grade Good</span>
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-5 pt-3 space-y-2 text-xs flex-1">
+                        <h3 class="text-sm font-bold text-white group-hover:text-amber-300 transition-colors">Graduation Certificate — Bachelor of IT & Computing</h3>
+                        <p class="text-[11px] text-slate-400 leading-relaxed">Faculty of Computer Studies — cumulative GPA <span class="text-amber-300 font-mono">2.19 / 4.0</span> at the end of Summer semester 2024/2025 — QR-verified with University President signature.</p>
+                    </div>
+                    <div class="px-4 sm:px-5 pb-4 sm:pb-5">
+                        <a href="شهادة جامعية.pdf" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500 border border-amber-500/40 hover:text-slate-950 text-amber-300 font-bold text-xs transition-all">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <span>Open Original PDF</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CERT 2: The Open University UK Degree -->
+                <div class="glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-sky-500/50 transition-all group flex flex-col">
+                    <div class="p-4 sm:p-5 pb-3 flex flex-wrap items-center gap-2">
+                        <span class="px-3 py-1 rounded-lg text-[10px] sm:text-xs font-bold flex items-center gap-1.5 bg-sky-500/10 border border-sky-500/40 text-sky-300">
+                            <i class="fa-solid fa-crown text-[11px]"></i> The Open University • United Kingdom
+                        </span>
+                        <span class="bg-slate-900 border border-slate-800 text-slate-300 text-[10px] font-mono px-2.5 py-1 rounded-lg">25 Sep 2025</span>
+                    </div>
+                    <div class="px-4 sm:px-5">
+                        <div class="relative rounded-2xl overflow-hidden border border-slate-800/80 bg-white cursor-pointer max-h-[420px]" onclick="openLightbox('image', 'images/cert-ou-degree.jpg', 'British BSc Degree — The Open University', 'UK Certificate', 'BSc with Second Class Honours (2nd Division) — IT & Computing (Computer Science) — validated programme at the Arab Open University.')">
+                            <img src="images/cert-ou-degree.jpg" alt="British BSc Degree — The Open University" class="w-full h-auto max-h-[420px] object-cover object-top group-hover:scale-[1.02] transition-transform duration-700" loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                            <span class="absolute top-3 right-3 w-9 h-9 rounded-xl bg-black/75 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:bg-sky-500 group-hover:text-black transition-all shadow-lg">
+                                <i class="fa-solid fa-expand text-xs"></i>
+                            </span>
+                            <span class="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg shadow-lg text-[10px] font-bold bg-sky-500/20 border border-sky-500/50 text-sky-300">BSc Honours • 2nd Division</span>
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-5 pt-3 space-y-2 text-xs flex-1">
+                        <h3 class="text-sm font-bold text-white group-hover:text-sky-300 transition-colors">BSc with Second Class Honours (2nd Division)</h3>
+                        <p class="text-[11px] text-slate-400 leading-relaxed">Information Technology & Computing (Computer Science) — validated programme at the Arab Open University — Certificate No. <span class="text-sky-300 font-mono">25235/338229</span> — awarded under the Royal Charter of The Open University.</p>
+                    </div>
+                    <div class="px-4 sm:px-5 pb-4 sm:pb-5">
+                        <a href="شهادة جامعية بريطانية.pdf" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-sky-500/10 hover:bg-sky-500 border border-sky-500/40 hover:text-slate-950 text-sky-300 font-bold text-xs transition-all">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <span>Open Original PDF</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
     </div>
 
     <!-- NEW: FULL PORTFOLIO MEDIA SHOWCASE SECTION -->
